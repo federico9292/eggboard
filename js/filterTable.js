@@ -6,3 +6,17 @@ $(document).ready(function () {
         });
     });
 })
+
+function submitID() {
+    alert("The form was submitted");
+  }
+
+function getLeaderboard()
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=gold&n=10&top_n=1", false ); // false for synchronous request
+        xmlHttp.setRequestHeader("Access-Control-Allow-Origin","*");
+        xmlHttp.send();
+        
+        return xmlHttp.responseText;
+    }

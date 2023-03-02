@@ -1,74 +1,80 @@
 <!DOCTYPE html>
 <html class="preload" lang="en">
-  <head>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<head>
 
-    <!-- The name of your site that shows up in the browser tab -->
-    <title>Welcome to my site</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
-    <!-- Describe what your site is about -->
-    <meta name="description" content="A list of places you can find me on the web.">
+  <!-- The name of your site that shows up in the browser tab -->
+  <title>Welcome to my site</title>
 
-    <!-- This is the small icon that shows up in the browser tab -->
-    <link rel="shortcut icon" href="/images/favicon.png">
+  <!-- Describe what your site is about -->
+  <meta name="description" content="A list of places you can find me on the web.">
 
-    <!-- Styling for this site -->
-    <link rel="stylesheet" href="/css/styles.css">
-  </head>
+  <!-- This is the small icon that shows up in the browser tab -->
+  <link rel="shortcut icon" href="/images/favicon.png">
 
-  <!-- This class is removed if the user has JavaScript enabled -->
-  <body class="no-js">
-    <header>
-      <!-- Dark mode toggle -->
-      <div class="mode-toggle">
-        <button class="[ toggle-button ] [ js-mode-toggle ]">
-          <span class="toggle-icon" aria-hidden="true"></span>
-          <span class="[ toggle-text ] [ js-mode-toggle-text ]">Switch to dark theme</span>
-        </button>
-      </div>
-    </header>
-    <main>
-      <section class="about">
-        <h1>Eggboard</h1>
-        <label for="myInput">Insert your EI id:</label>
-        <input class="form-control" id="myInput" type="text" placeholder="EI123456789">
-        <button class="form-control">Submit</button>
-      </section>
-      <nav>
-        <p>Type something in the input field to search inside the table for first names, last names or emails:</p>  
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
-        <br>
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Firstname</th>
-              <th>Lastname</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tbody id="myTable">
-            <tr>
-              <td>John</td>
-              <td>Doe</td>
-              <td>john@example.com</td>
-              <tr>
-                <td>Mary</td>
-                <td>Jane</td>
-                <td>maryjane@somecorp.com</td>
-          </tbody>
-        </table>
+  <!-- Styling for this site -->
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
 
-      </nav>
-    </main>
+<!-- This class is removed if the user has JavaScript enabled -->
 
-    <!-- scripts -->
-    <script src="/js/dark-mode.js"></script>
-    <script src="/js/filterTable.js"></script>
+<body class="no-js">
+  <header>
+    <!-- Dark mode toggle -->
+    <div class="mode-toggle">
+      <button class="[ toggle-button ] [ js-mode-toggle ]">
+        <span class="toggle-icon" aria-hidden="true"></span>
+        <span class="[ toggle-text ] [ js-mode-toggle-text ]">Switch to dark theme</span>
+      </button>
+    </div>
+  </header>
+  <main>
+    <section class="about">
+      <h1>Eggboard</h1>
+      <label for="myInput">Insert your EI id:</label>
+      <input class="form-control" id="myInput" type="text" placeholder="EI123456789">
+      <button class="form-control">Submit</button>
+    </section>
+    <nav>
+      <p>Type something in the input field to search inside the table for first names, last names or emails:</p>
+      <input class="form-control" id="myInput" type="text" placeholder="Search..">
+      <br>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>john@example.com</td>
+          <tr>
+            <td>Mary</td>
+            <td>Jane</td>
+            <td>maryjane@somecorp.com</td>
+        </tbody>
+      </table>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">  </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    </html>
+    </nav>
+  </main>
+</body>
+<!-- scripts -->
+<script src="/js/dark-mode.js"></script>
+<script src="/js/filterTable.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</html>

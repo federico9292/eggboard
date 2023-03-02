@@ -11,7 +11,7 @@ function submitID() {
     alert("The form was submitted");
 }
 
-function getLeaderboard() {
+function getLeaderboardGold() {
     const http = new XMLHttpRequest()
 
     http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=gold&n=10&top_n=1")
@@ -21,7 +21,16 @@ function getLeaderboard() {
         fillTable(http.responseText)
     }
 }
+function getLeaderboardTachyion() {
+    const http = new XMLHttpRequest()
 
+    http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=tachyion&n=10&top_n=1")
+    //http.setRequestHeader("Access-Control-Allow-Origin","*");
+    http.send();
+    http.onload = () => {
+        fillTable(http.responseText)
+    }
+}
 function fillTable(response) {
     console.log(response);
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)

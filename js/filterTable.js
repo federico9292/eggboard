@@ -33,9 +33,21 @@ function getLeaderboardTachyon() {
 }
 function fillTable(response) {
     console.log(response);
+    jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
-    
+    jQuery('#thead').append(
+        '<th>Pos</th>'    
+        +'<th>Name</th>'
+    +'<th>Stars</th>'
+    +'<th>Capacity</th>'
+    +'<th>T1</th>'
+    +'<th>T2</th>'
+    +'<th>T3</th>'
+    +'<th>Total</th>'
+  );
+
+
     jQuery.each(response.content, function (_key, value) {
         jQuery('#myTable')
             .append('<tr><td>' + value[0]
@@ -51,9 +63,20 @@ function fillTable(response) {
 }
 function fillTable2(response) {
     console.log(response);
+    jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
-    
+    jQuery('thead').append(
+        '<th>Pos</th>'    
+        +'<th>Name</th>'
+    +'<th>Stars</th>'
+    +'<th>Capacity</th>'
+    +'<th>T1</th>'
+    +'<th>T2</th>'
+    +'<th>T3</th>'
+    +'<th>T4</th>'
+    +'<th>Total</th>'
+  );
     jQuery.each(response.content, function (_key, value) {
         jQuery('#myTable')
             .append('<tr><td>' + value[0]

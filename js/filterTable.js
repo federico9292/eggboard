@@ -11,27 +11,24 @@ function submitID() {
     alert("The form was submitted");
 }
 
-function getLeaderboardGold() {
+function getLeaderboard(type,name) {
     const http = new XMLHttpRequest()
-
-    http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=gold&n=10&top_n=1")
+    
+    http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element="+name+"&n=10&top_n=1")
     //http.setRequestHeader("Access-Control-Allow-Origin","*");
     http.send();
     http.onload = () => {
-        fillTable(http.responseText)
-    }
-}
-function getLeaderboardTachyon() {
-    const http = new XMLHttpRequest()
+        if(type == 'artifact'){
 
-    http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=tachyon&n=10&top_n=1")
-    //http.setRequestHeader("Access-Control-Allow-Origin","*");
-    http.send();
-    http.onload = () => {
-        fillTable2(http.responseText)
+            fillTableArtifact(http.responseText)
+    
+        }
+        else{
+            fillTableIngredient(http.responseText);
+        }
     }
 }
-function fillTable(response) {
+function fillTableIngredient(response) {
     console.log(response);
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
@@ -61,7 +58,7 @@ function fillTable(response) {
                 + '</td></tr>');
     });
 }
-function fillTable2(response) {
+function fillTableArtifact(response) {
     console.log(response);
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)

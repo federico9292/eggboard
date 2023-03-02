@@ -37,14 +37,14 @@ function fillTable(response) {
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
     jQuery('#thead').append(
-        '<th>Pos</th>'    
+        '<tr><th>Pos</th>'    
         +'<th>Name</th>'
     +'<th>Stars</th>'
     +'<th>Capacity</th>'
     +'<th>T1</th>'
     +'<th>T2</th>'
     +'<th>T3</th>'
-    +'<th>Total</th>'
+    +'<th>Total</th></tr>'
   );
 
 
@@ -66,8 +66,8 @@ function fillTable2(response) {
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
-    jQuery('thead').append(
-        '<th>Pos</th>'    
+    jQuery('#thead').append(
+        '<tr><th>Pos</th>'    
         +'<th>Name</th>'
     +'<th>Stars</th>'
     +'<th>Capacity</th>'
@@ -75,7 +75,7 @@ function fillTable2(response) {
     +'<th>T2</th>'
     +'<th>T3</th>'
     +'<th>T4</th>'
-    +'<th>Total</th>'
+    +'<th>Total</th></tr>'
   );
     jQuery.each(response.content, function (_key, value) {
         jQuery('#myTable')

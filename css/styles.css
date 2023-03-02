@@ -83,12 +83,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1vw;
-  background-color: var(--background);
+  background-color: var(--background)!important;
   border-radius: 5px;
   font-size: 112.5%;
   font-family: "Inter UI", Helvetica, Arial, sans-serif;
   line-height: 1.4;;
-  color: var(--text-color);
+  color: var(--text-color)!important;
 }
 
 body.no-js {

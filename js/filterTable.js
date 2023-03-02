@@ -24,7 +24,7 @@ function getLeaderboardGold() {
 function getLeaderboardTachyion() {
     const http = new XMLHttpRequest()
 
-    http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=tachyion&n=10&top_n=1")
+    http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=tachyon&n=10&top_n=1")
     //http.setRequestHeader("Access-Control-Allow-Origin","*");
     http.send();
     http.onload = () => {

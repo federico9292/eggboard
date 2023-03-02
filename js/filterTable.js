@@ -9,14 +9,34 @@ $(document).ready(function () {
 
 function submitID() {
     alert("The form was submitted");
-  }
+}
 
-function getLeaderboard()
-    {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=gold&n=10&top_n=1", false ); // false for synchronous request
-        xmlHttp.setRequestHeader("Access-Control-Allow-Origin","*");
-        xmlHttp.send();
-        
-        return xmlHttp.responseText;
+function getLeaderboard() {
+    const http = new XMLHttpRequest()
+
+    http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=gold&n=10&top_n=1")
+    //http.setRequestHeader("Access-Control-Allow-Origin","*");
+    http.send();
+    http.onload = () => {
+        fillTable(http.responseText)
     }
+}
+
+function fillTable(response) {
+    console.log(response);
+    jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
+    response = JSON.parse(response);
+    
+    jQuery.each(response.content, function (_key, value) {
+        jQuery('#myTable')
+            .append('<tr><td>' + value[0]
+                + '</td><td>' + value[1]
+                + '</td><td>' + value[2]
+                + '</td><td>' + value[3]
+                + '</td><td>' + value[4]
+                + '</td><td>' + value[5]
+                + '</td><td>' + value[6]
+                + '</td><td>' + value[7]
+                + '</td></tr>');
+    });
+}

@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html class="preload" lang="en">
   <head>
-    <!-- Site designed for Drop by the team at 
-    ███╗   ██╗███████╗████████╗██╗     ██╗███████╗██╗   ██╗
-    ████╗  ██║██╔════╝╚══██╔══╝██║     ██║██╔════╝╚██╗ ██╔╝
-    ██╔██╗ ██║█████╗     ██║   ██║     ██║█████╗   ╚████╔╝ 
-    ██║╚██╗██║██╔══╝     ██║   ██║     ██║██╔══╝    ╚██╔╝  
-    ██║ ╚████║███████╗   ██║   ███████╗██║██║        ██║   
-    ╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚══════╝╚═╝╚═╝        ╚═╝    -->
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
@@ -47,27 +41,37 @@
         <a href="mailto:frodo@bag.end">
           <strong>E-mail</strong>
           <span>frodo@bag.end</span>
-        </a>
-        <a href="https://twitter.com/frodobaggins">
-          <strong>Twitter</strong>
-          <span>@frodobaggins</span>
-        </a>
-        <a href="https://linkedin.com">
-          <strong>LinkedIn</strong>
-          <span>@frodobaggins</span>
-        </a>
-        <a href="https://github.com">
-          <strong>GitHub</strong>
-          <span>@frodobags</span>
-        </a>
-        <a href="https://codepen.io">
-          <strong>CodePen</strong>
-          <span>@frodobags</span>
+
         </a>
       </nav>
     </main>
 
     <!-- Dark mode button functionality -->
     <script src="/js/dark-mode.js"></script>
+    <main>
+      <article>
+        <h1>Dark mode should be a user preference—not presumed</h1>
+        <p>
+          Yes, by default, when a user has
+          <code>@media (prefers-color-scheme: dark)</code> set, we should set a dark theme,
+          but we should also provide a switch for if the dark them isn’t working out for them.
+        </p>
+        <p>
+          This also benefits users that don’t have
+          <code>@media (prefers-color-scheme: dark)</code> set because they get a toggle to
+          choose, too.
+        </p>
+      </article>
+      <div class="user-toggle">
+        <div role="status" class="[ visually-hidden ][ js-mode-status ]"></div>
+        <button class="[ toggle-button ] [ js-mode-toggle ]">
+          <span class="[ toggle-button__text ] [ js-mode-toggle-text ]"
+            >Enable dark mode</span
+          >
+          <span class="toggle-button__icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </main>
+    
   </body>
 </html>

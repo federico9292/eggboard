@@ -21,7 +21,7 @@ function getLeaderboardGold() {
         fillTable(http.responseText)
     }
 }
-function getLeaderboardTachyion() {
+function getLeaderboardTachyon() {
     const http = new XMLHttpRequest()
 
     http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=tachyon&n=10&top_n=1")

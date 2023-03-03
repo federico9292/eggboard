@@ -222,6 +222,11 @@ function switchPage(pageName) {
         normalizedName = "Global Leaderboard Page"
         jQuery('#Global')[0].classList.remove('hidden');
         jQuery('#Personal')[0].classList.add('hidden');
+
+        jQuery('#thead_personal tr').remove(); //to clear the columns;
+        jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
+       
+
     } else {
         otherPage = 'globalPage';
         normalizedName = "Personal Leaderboard Page"
@@ -296,8 +301,8 @@ function fillPersonalTable(response) {
     jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
    
     jQuery('#thead_personal').append(
-        '<tr class=\'fs-4\'><th>Name</th>'
-        + '<th>Pos</th>'
+        '<tr class=\'fs-4\'><th>Item Name</th>'
+        + '<th>Position</th>'
         + '<th>Stars</th>'
         + '<th>Capacity</th>'
         + '<th>T1</th>'

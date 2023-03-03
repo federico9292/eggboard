@@ -11,6 +11,12 @@ $(document).ready(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
+    if(localStorage.getItem("EID")){
+        jQuery('#EID')[0].value = localStorage.getItem("EID");
+    }
+    else {
+        jQuery('#EID')[0].value = '';
+    }
     createDropdowns();
 })
 
@@ -204,11 +210,12 @@ function switchPage(pageName) {
         otherPage = 'personalPage';
         normalizedName = "Global Leaderboard Page"
         jQuery('#Global')[0].classList.remove('hidden');
-
+        jQuery('#Personal')[0].classList.add('hidden');
     } else {
         otherPage = 'globalPage';
         normalizedName = "Personal Leaderboard Page"
         jQuery('#Global')[0].classList.add('hidden');
+        jQuery('#Personal')[0].classList.remove('hidden');
 
     }
 
@@ -221,4 +228,24 @@ function switchPage(pageName) {
 
 
     }
+}
+function saveValue(e){
+    var id = e.id;  // get the sender's id to save it . 
+    var val = e.value; // get the value. 
+    localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+}
+function submitID(e) {
+    
+    document.getElementById("EID").value = getSavedValue("EID");   
+
+        //Save the value function - save it to localStorage as (ID, VALUE)
+        
+
+        //get the saved value function - return the value of "v" from localStorage. 
+        function getSavedValue(v){
+            if (!localStorage.getItem(v)) {
+                return "EI1234567890";// You can change this to your defualt value. 
+            }
+            return localStorage.getItem(v);
+        }
 }

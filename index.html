@@ -10,7 +10,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
-    
   <script src="/js/filterTable.js"></script>
 </head>
 
@@ -97,6 +96,20 @@
     </div>  
     </div>
 
+    <div id="Personal" class="hidden">
+
+      <p></p>
+      <form>
+        <div class="form-group">
+          <label for="EID">Type your Egg,Inc ID to view your personal leaderboards</label>
+          <input type="search" class="form-control" id="EID" aria-describedby="emailHelp" placeholder="Enter EID" value="" onkeyup="saveValue(this)">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your EID with anyone else.</small>
+        </div>
+        <button type="submit" class="btn btn-primary"  onclick="submitID(this)">View leaderboards</button>
+      </form>
+
+
+    </div>
   </div>
 
 </body>

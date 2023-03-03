@@ -11,14 +11,14 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
   <!-- </script>
- --> 
+ -->
 
   <script src="/js/filterTable.js"></script>
 </head>
 
 <body>
 
-  <div class="container">
+  <div class="container" style="max-width: 98%;">
     <div hidden>
       <p>
       </p>
@@ -37,32 +37,29 @@
     </div>
 
 
-    <div class="row">
-      <div class="col-sm-2">
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown" aria-expanded="false"> Ingredients <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" id="dropdown_menu_Ingredients">
-          </ul>
-        </div>
+    <div class="flex-container wrap" style="display:flex; flex-wrap: wrap;">
+      <div class="dropdown" style="padding-right: 1rem;padding-bottom: 1rem;">
+        <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown"
+          aria-expanded="false"> Ingredients <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" id="dropdown_menu_Ingredients">
+        </ul>
       </div>
 
-      <div class="col-sm-2">
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown" aria-expanded="false"> Stones <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" id="dropdown_menu_Stones">
-          </ul>
-        </div>
+      <div class="dropdown" style="padding-right: 1rem;padding-bottom: 1rem;">
+        <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown"
+          aria-expanded="false"> Stones <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" id="dropdown_menu_Stones">
+        </ul>
       </div>
 
-      <div class="col-sm-2">
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown" aria-expanded="false"> Artifacts <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" id="dropdown_menu_Artifacts">
-          </ul>
-        </div>
+      <div class="dropdown" style="padding-right: 1rem;padding-bottom: 1rem;">
+        <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown"
+          aria-expanded="false"> Artifacts <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" id="dropdown_menu_Artifacts">
+        </ul>
       </div>
 
     </div>
@@ -75,20 +72,20 @@
     <br>
     <div id="section2">
 
-    
-    <br>
-    
+
+      <br>
+
       <table class="table table-bordered table-striped table-condensed table-responsive">
-      <thead id="thead">
+        <thead id="thead">
 
-      </thead>
-      <tbody id="myTable">
+        </thead>
+        <tbody id="myTable">
 
-      </tbody>
-    </table>
-
+        </tbody>
+      </table>
+      <button id="buttonMore" class="btn btn-primary hidden">show more rows</button>
+    </div>
   </div>
-</div>
 
 </body>
 

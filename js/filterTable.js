@@ -28,7 +28,7 @@ function getLeaderboard(type, name) {
         window._rows = 10;
         window._iterations = 0;
     }
-    http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n=0");
+    http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n=1");
     http.send();
     name = name.charAt(0).toUpperCase() + name.slice(1)
     window._current_item = type;

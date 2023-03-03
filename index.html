@@ -11,7 +11,8 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
   <!-- </script>
- -->
+ --> 
+
   <script src="/js/filterTable.js"></script>
 </head>
 
@@ -25,8 +26,7 @@
         <label for="eggincid">Insert EI Id</label>
         <input type="search" id="eggincid"> <input type="submit" value="Submit ID">
       </form>
-      <p>
-      </p>
+      <p></p>
     </div>
 
     <p></p>
@@ -40,36 +40,45 @@
     <div class="row">
       <div class="col-sm-2">
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Ingredients <span class="caret"></span>
+          <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown" aria-expanded="false"> Ingredients <span class="caret"></span>
           </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" role="button" onclick="getLeaderboard('ingredient','gold')" >Gold</a></li>
+          <ul class="dropdown-menu" id="dropdown_menu_Ingredients">
           </ul>
         </div>
       </div>
 
       <div class="col-sm-2">
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Artifacts <span class="caret"></span>
+          <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown" aria-expanded="false"> Stones <span class="caret"></span>
           </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" role="button" onclick="getLeaderboard('artifact','tachyon')" >Tachyon</a></li>
+          <ul class="dropdown-menu" id="dropdown_menu_Stones">
           </ul>
         </div>
       </div>
+
+      <div class="col-sm-2">
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle btn-lg " type="button" data-bs-toggle="dropdown" aria-expanded="false"> Artifacts <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" id="dropdown_menu_Artifacts">
+          </ul>
+        </div>
+      </div>
+
     </div>
 
-
+    <p></p>
+    <p></p>
     <p></p>
 
-
-
-    <p>Type something in the input field to search the table</p>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <input class="form-control hidden" id="myInput" type="text" placeholder="Type something to search the table">
     <br>
-    <table class="table table-bordered table-striped table-condensed table-responsive">
+    <div id="section2">
+
+    
+    <br>
+    
+      <table class="table table-bordered table-striped table-condensed table-responsive">
       <thead id="thead">
 
       </thead>
@@ -79,7 +88,7 @@
     </table>
 
   </div>
-
+</div>
 
 </body>
 

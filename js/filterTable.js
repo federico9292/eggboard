@@ -33,11 +33,20 @@ function getLeaderboard(type, name) {
     name = name.charAt(0).toUpperCase() + name.slice(1)
     window._current_item = type;
     window._current_name = name;
-    jQuery('.spinner-border')[0].style='position: fixed;left:38%; width:10rem; height: 10rem; visibility: show; z-index: 12222!important';
+    var spinnerBorder = document.createElement('div');//      <div class="d-flex align-items-center justify-content-center spinner-border" style="width: 0rem; height: 0rem; visibility: hidden;" role="status" >
+    
+    jQuery('body')[0].insertBefore(spinnerBorder, jQuery('body')[0].firstChild)
+    
+    spinnerBorder.setAttribute('style',"position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 12222!important");
+    spinnerBorder.classList.add("spinner-border");
+    spinnerBorder.classList.add("align-items-center");
+    spinnerBorder.classList.add("d-flex");
+    spinnerBorder.classList.add("justify-content-center");// align-items-center justify-content-center spinner-border");
+    //jQuery('.spinner-border')[0].style='position: fixed;left:38%; width:10rem; height: 10rem; visibility: show; z-index: 12222!important';
     jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
 
     http.onload = () => {
-        jQuery('.spinner-border')[0].style='width:0rem; height: 0rem; visibility: hidden;';
+        jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
         jQuery('.backgroundBlur')[0].style='';
      
         displayButtonMore();

@@ -3,8 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" >
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <title>Eggboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -16,7 +17,7 @@
 </head>
 
 <body class="container">
-<div class = "backgroundBlur"></div>
+  <div class="backgroundBlur"></div>
   <div class="container" style="max-width: 100%;">
     <div hidden>
       <p>
@@ -35,40 +36,40 @@
       <h2 id="page" class="" style="visibility: hidden;">Global</h2>
     </div>
     <div class="backgroundBlur h-100 d-flex align-items-center justify-content-center">
-      </div>
     </div>
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link fs-2" href="#" id="globalPage" onclick="switchPage('globalPage')">Global</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link fs-2" href="#" id="personalPage" onclick="switchPage('personalPage')">Personal</a>
-      </li>
-    </ul>
-    <p></p>
+  </div>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link fs-2" href="#" id="globalPage" onclick="switchPage('globalPage')">Global</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link fs-2" href="#" id="personalPage" onclick="switchPage('personalPage')">Personal</a>
+    </li>
+  </ul>
+  <p></p>
 
-    
-    <div id="Global" class="hidden">
-        <div class="flex-container wrap" style="display:flex; flex-wrap: wrap;">
-          <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 1rem;">
-          <button class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false"> Ingredients <span class="caret"></span>
+
+  <div id="Global" class="hidden">
+    <div class="flex-container wrap" style="display:flex; flex-wrap: wrap;">
+      <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 1rem;">
+        <button class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Ingredients <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" id="dropdown_menu_Ingredients">
         </ul>
       </div>
 
       <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 1rem;">
-        <button class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false"> Stones <span class="caret"></span>
+        <button class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Stones <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" id="dropdown_menu_Stones">
         </ul>
       </div>
 
       <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 1rem;">
-        <button class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false"> Artifacts <span class="caret"></span>
+        <button class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Artifacts <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" id="dropdown_menu_Artifacts">
         </ul>
@@ -96,23 +97,30 @@
         </tbody>
       </table>
       <button id="buttonMore" class="btn btn-primary hidden fs-3">show more rows</button>
-    </div>  
     </div>
+  </div>
 
-    <div id="Personal" class="hidden">
+  <div id="Personal" class="hidden">
 
-      <p></p>
-      <form>
-        <div class="form-group fs-3">
-          <label class="fw-normal" for="EID">Type your Egg,Inc ID to view your personal leaderboards</label>
-          <input type="search" class="form-control fs-4" id="EID" aria-describedby="emailHelp" placeholder="Enter EID" value="" onkeyup="saveValue(this)">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your EID with anyone else.</small>
-        </div>
-        <button type="submit" class="btn btn-primary fs-4"  onclick="submitID(this)">View leaderboards</button>
-      </form>
+    <p></p>
+    <form>
+      <div class="form-group fs-3">
+        <label class="fw-normal" for="EID">Type your Egg,Inc ID to view your personal leaderboards</label>
+        <input type="search" class="form-control fs-4" id="EID" aria-describedby="emailHelp" placeholder="Enter EID"
+          value="" onkeyup="saveValue(this)">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your EID with anyone else.</small>
+      </div>
+      <button type="submit" class="btn btn-primary fs-4" onclick="submitID(this)">View leaderboards</button>
+    </form>
+    <p></p>
+    <table class="table table-bordered table-striped table-condensed table-responsive">
+      <thead id="thead_personal">
+      </thead>
+      <tbody id="myPersonalTable">
+      </tbody>
+    </table>
 
-
-    </div>
+  </div>
   </div>
 
 

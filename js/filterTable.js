@@ -280,18 +280,54 @@ function submitID(e) {
         jQuery('.backgroundBlur')[0].style='';
         
         var response = JSON.parse(http.responseText);
-        response.content.sort(compareSecondColumn);
+        response.content = response.content.sort(compareSecondColumn);
         console.log(response);
-       
-        function compareSecondColumn(a, b) {
-            if (a[1] === b[1]) {
-                return 0;
-            }
-            else {
-                return (a[1] < b[1]) ? -1 : 1;
-            }
-        }
+        fillPersonalTable(response.content);
+        
+        
     
     };
 
+
+}
+
+function fillPersonalTable(response) {
+    jQuery('#thead_personal tr').remove(); //to clear the columns;
+    jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
+   
+    jQuery('#thead_personal').append(
+        '<tr class=\'fs-4\'><th>Name</th>'
+        + '<th>Pos</th>'
+        + '<th>Stars</th>'
+        + '<th>Capacity</th>'
+        + '<th>T1</th>'
+        + '<th>T2</th>'
+        + '<th>T3</th>'
+        + '<th>T4</th>'
+        + '<th>Total</th>'
+        + '</tr>'
+    );
+
+    jQuery.each(response, function (_key, value) {
+        jQuery('#myPersonalTable')
+            .append('<tr class=\'fs-5\'><td>' + value[0].charAt(0).toUpperCase() + value[0].slice(1)
+            + '</td><td>' + value[1]
+            + '</td><td>' + value[3]
+            + '</td><td>' + value[4]
+            + '</td><td>' + value[5][1]
+            + '</td><td>' + value[5][2]
+            + '</td><td>' + value[5][3]
+            + '</td><td>' + ((value[5][4])? value[5][4]: '')
+            + '</td><td>' + value[5]["total"]
+            + '</td></tr>');
+    });
+}
+
+function compareSecondColumn(a, b) {
+    if ( parseInt(a[1]) === parseInt(b[1])) {
+        return 0;
+    }
+    else {
+        return (parseInt(a[1]) < parseInt(b[1])) ? -1 : 1;
+    }
 }

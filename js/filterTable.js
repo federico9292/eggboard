@@ -3,6 +3,7 @@ var _iterations = 0;
 var _current_item;
 var _current_name;
 var _currentPage = 'globalPage'
+var _unique=0;
 
 $(document).ready(function () {
     $("#myInput").on("keyup", function () {
@@ -20,6 +21,9 @@ $(document).ready(function () {
     createDropdowns();
 })
 
+function toggleCheckbox() {
+   (jQuery('#justOneShip')[0].checked)? window._unique=1:window._unique=0;
+}
 
 function getLeaderboard(type, name) {
     const http = new XMLHttpRequest()
@@ -28,7 +32,8 @@ function getLeaderboard(type, name) {
         window._rows = 10;
         window._iterations = 0;
     }
-    http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n=1");
+    
+    http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n="+window._unique);
     http.send();
     name = name.charAt(0).toUpperCase() + name.slice(1)
     window._current_item = type;
@@ -212,7 +217,6 @@ function getMoreRows(current_item, current_name) {
 function switchPage(pageName) {
     //jQuery('#' + pageName)[0].classList.add('bg-primary');
     jQuery('#page')[0].style = '';
-    jQuery('.jumbotron h1')[0].textContent = 'Eggboard';
 
     var normalizedName;
 
@@ -240,13 +244,13 @@ function switchPage(pageName) {
         jQuery('#myInput')[0].classList.add('hidden');
     }
 
-    jQuery('#page')[0].textContent = normalizedName;
+     jQuery('#page')[0].textContent = normalizedName;
 
     if (window._currentPage != pageName) {
         //alert(pageName);
         window._currentPage = pageName;
         jQuery('#' + otherPage)[0].classList.remove('bg-primary');
-
+        jQuery('.jumbotron h1')[0].textContent = 'Eggboard';
 
     }
 }

@@ -33,7 +33,7 @@
     <p></p>
     <div class="jumbotron" style="max-width: 100%;">
       <h1 style="font-size: -webkit-xxx-large">Eggboard</h1>
-      <h2 id="page" class="" style="visibility: hidden;">Global</h2>
+      <h2 id="page" class="" style="visibility: visible;">Global Leaderboard Page</h2>
     </div>
     <div class="backgroundBlur h-100 d-flex align-items-center justify-content-center">
     </div>
@@ -49,30 +49,49 @@
   <p></p>
 
 
-  <div id="Global" class="hidden">
-    <div class="flex-container wrap" style="display:flex; flex-wrap: wrap;">
-      <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 1rem;">
+  <div id="Global" class="">
+    <div class="flex-container wrap" style="display:flex;align-content: stretch;align-items: center;flex-wrap: wrap;justify-content: space-around;">
+      <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 0.25rem;padding-top: 0.25rem;">
         <button class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Ingredients <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" id="dropdown_menu_Ingredients">
-        </ul>
+        <ul class="dropdown-menu" id="dropdown_menu_Ingredients" >
+
+      </ul>
       </div>
 
-      <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 1rem;">
+      <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 0.25rem;padding-top: 0.25rem;">
         <button class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Stones <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" id="dropdown_menu_Stones">
-        </ul>
-      </div>
+        </div>
 
-      <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 1rem;">
+      <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 0.25rem;padding-top: 0.25rem;">
         <button class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Artifacts <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" id="dropdown_menu_Artifacts">
-        </ul>
+        </div>
+
+      <ul class="list-group">
+        <div>
+          <li class=" fs-4" style="display: flex;align-items: center;">
+            <span>
+              <label class="switch" style="
+    margin-bottom: auto;
+">
+                <input type="checkbox" id="justOneShip" onclick="toggleCheckbox()">
+                <span class="slider round"></span>
+              </label>
+            </span> 
+            <span class="fs-3" style="margin-left: 10px;"> Just one entry per farmer (no duplicates)</span> 
+          </li>
+        </div>
+      </ul>
+      <div>
+
+
       </div>
 
     </div>

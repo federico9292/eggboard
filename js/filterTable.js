@@ -20,7 +20,7 @@ function getLeaderboard(type, name) {
     name = name.charAt(0).toUpperCase() + name.slice(1)
     http.onload = () => {
         displaySearch();
-        if (type == 'artifact') {
+        if (type == 'artifact' || type == 'stones') {
             fillTableArtifact(http.responseText, name);
         }
         else {
@@ -127,7 +127,7 @@ function createDropdowns() {
         a.setAttribute('class','dropdown-item');
         a.setAttribute('href','#');
         a.setAttribute('role',"button");
-        a.setAttribute("onclick","getLeaderboard(\'artifact\',\'"+element+"\')"); //Stones are like Artifacts, with 4 Tiers
+        a.setAttribute("onclick","getLeaderboard(\'stones\',\'"+element+"\')"); //Stones are like Artifacts, with 4 Tiers
         a.text = element.charAt(0).toUpperCase() + element.slice(1);
         menu_stones.appendChild(document.createElement('li')).appendChild(a);
 

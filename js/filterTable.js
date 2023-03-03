@@ -14,7 +14,8 @@ function submitID() {
 
 function getLeaderboard(type, name) {
     const http = new XMLHttpRequest()
-    http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=10&top_n=1")
+    //http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=10&top_n=1")
+    http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=10&top_n=1");
     //http.setRequestHeader("Access-Control-Allow-Origin","*");
     http.send();
     name = name.charAt(0).toUpperCase() + name.slice(1)

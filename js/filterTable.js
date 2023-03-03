@@ -20,9 +20,6 @@ $(document).ready(function () {
     createDropdowns();
 })
 
-function submitID() {
-    alert("The form was submitted");
-}
 
 function getLeaderboard(type, name) {
     const http = new XMLHttpRequest()
@@ -31,8 +28,7 @@ function getLeaderboard(type, name) {
         window._rows = 10;
         window._iterations = 0;
     }
-    http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n=1");
-    //http.setRequestHeader("Access-Control-Allow-Origin","*");
+    http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n=0");
     http.send();
     name = name.charAt(0).toUpperCase() + name.slice(1)
     window._current_item = type;
@@ -58,7 +54,7 @@ function fillTableIngredient(response, name) {
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
     jQuery('#thead').append(
-        '<tr><th>Pos</th>'
+        '<tr class=\'fs-4\'><th>Pos</th>'
         + '<th>Name</th>'
         + '<th>Stars</th>'
         + '<th>Capacity</th>'
@@ -71,7 +67,7 @@ function fillTableIngredient(response, name) {
 
     jQuery.each(response.content, function (_key, value) {
         jQuery('#myTable')
-            .append('<tr><td>' + value[0]
+            .append('<tr class=\'fs-5\'><td>' + value[0]
                 + '</td><td>' + value[1]
                 + '</td><td>' + value[2]
                 + '</td><td>' + value[3]
@@ -91,7 +87,7 @@ function fillTableArtifact(response, name, type) {
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
     jQuery('#thead').append(
-        '<tr><th>Pos</th>'
+        '<tr class=\'fs-4\'><th>Pos</th>'
         + '<th>Name</th>'
         + '<th>Stars</th>'
         + '<th>Capacity</th>'
@@ -104,7 +100,7 @@ function fillTableArtifact(response, name, type) {
 
     jQuery.each(response.content, function (_key, value) {
         jQuery('#myTable')
-            .append('<tr><td>' + value[0]
+            .append('<tr class=\'fs-5\'><td>' + value[0]
                 + '</td><td>' + value[1]
                 + '</td><td>' + value[2]
                 + '</td><td>' + value[3]
@@ -136,7 +132,7 @@ function createDropdowns() {
 
     arrayIngredients.forEach(element => {
         var a = document.createElement('a');
-        a.setAttribute('class', 'dropdown-item');
+        a.setAttribute('class', 'dropdown-item fs-4');
         a.setAttribute('href', '#');
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'ingredient\',\'" + element + "\')");
@@ -146,7 +142,7 @@ function createDropdowns() {
 
     arrayStones.forEach(element => {
         var a = document.createElement('a');
-        a.setAttribute('class', 'dropdown-item');
+        a.setAttribute('class', 'dropdown-item fs-4');
         a.setAttribute('href', '#');
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'Stone\',\'" + element + "\')"); //Stones are like Artifacts, with 4 Tiers
@@ -157,7 +153,7 @@ function createDropdowns() {
 
     arrayArtifacts.forEach(element => {
         var a = document.createElement('a');
-        a.setAttribute('class', 'dropdown-item');
+        a.setAttribute('class', 'dropdown-item fs-4');
         a.setAttribute('href', '#');
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + element + "\')");
@@ -200,7 +196,7 @@ function getMoreRows(current_item, current_name) {
 }
 
 function switchPage(pageName) {
-    jQuery('#' + pageName)[0].classList.add('bg-primary');
+    //jQuery('#' + pageName)[0].classList.add('bg-primary');
     jQuery('#page')[0].style = '';
 
     var normalizedName;
@@ -234,18 +230,40 @@ function saveValue(e){
     var val = e.value; // get the value. 
     localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
 }
+function getSavedValue(v){
+    if (!localStorage.getItem(v)) {
+        return "";// You can change this to your defualt value. 
+    }
+    return localStorage.getItem(v);
+}
+
 function submitID(e) {
-    
-    document.getElementById("EID").value = getSavedValue("EID");   
+    var eid = document.getElementById("EID").value;
+    const http = new XMLHttpRequest()
+    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/getPersonalLeaderboard?EID="+eid);
+    http.send();
 
-        //Save the value function - save it to localStorage as (ID, VALUE)
+    jQuery('.spinner-border')[0].style='width: 10rem; height: 10rem; visibility: show; z-index: 12222!important';
+    jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+
+    http.onload = function() {
+      
+        jQuery('.spinner-border')[0].style='width: 10rem; height: 10rem; visibility: hidden;';
+        jQuery('.backgroundBlur')[0].style='';
         
-
-        //get the saved value function - return the value of "v" from localStorage. 
-        function getSavedValue(v){
-            if (!localStorage.getItem(v)) {
-                return "EI1234567890";// You can change this to your defualt value. 
+        var response = JSON.parse(http.responseText);
+        response.content.sort(compareSecondColumn);
+        console.log(response);
+       
+        function compareSecondColumn(a, b) {
+            if (a[1] === b[1]) {
+                return 0;
             }
-            return localStorage.getItem(v);
+            else {
+                return (a[1] < b[1]) ? -1 : 1;
+            }
         }
+    
+    };
+
 }

@@ -119,7 +119,7 @@ function createDropdowns() {
         a.setAttribute('role',"button");
         a.setAttribute("onclick","getLeaderboard(\'ingredient\',\'"+element+"\')");
         a.text = element.charAt(0).toUpperCase() + element.slice(1);
-        menu_ingredients.appendChild(document.createElement('li')).appendChild(a); //.appendChild(document.createElement('a').attributes('class=dropdown-item'));
+        menu_ingredients.appendChild(document.createElement('li')).appendChild(a); 
     });
     
     arrayStones.forEach(element => {
@@ -127,9 +127,9 @@ function createDropdowns() {
         a.setAttribute('class','dropdown-item');
         a.setAttribute('href','#');
         a.setAttribute('role',"button");
-        a.setAttribute("onclick","getLeaderboard(\'ingredient\',\'"+element+"\')");
+        a.setAttribute("onclick","getLeaderboard(\'artifact\',\'"+element+"\')"); //Stones are like Artifacts, with 4 Tiers
         a.text = element.charAt(0).toUpperCase() + element.slice(1);
-        menu_stones.appendChild(document.createElement('li')).appendChild(a); //.appendChild(document.createElement('a').attributes('class=dropdown-item'));
+        menu_stones.appendChild(document.createElement('li')).appendChild(a);
 
     });
 
@@ -140,7 +140,7 @@ function createDropdowns() {
         a.setAttribute('role',"button");
         a.setAttribute("onclick","getLeaderboard(\'artifact\',\'"+element+"\')");
         a.text = element.charAt(0).toUpperCase() + element.slice(1);
-        menu_artifacts.appendChild(document.createElement('li')).appendChild(a); //.appendChild(document.createElement('a').attributes('class=dropdown-item'));
+        menu_artifacts.appendChild(document.createElement('li')).appendChild(a); 
 
     });    
 

@@ -210,7 +210,7 @@ function displayButtonMore(params) {
 
 function getMoreRows(current_item, current_name) {
     addMoreRows();
-    console.log(window._rows, 'rows');
+    //console.log(window._rows, 'rows');
     getLeaderboard(current_item, current_name.toLowerCase());
 }
 

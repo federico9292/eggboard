@@ -1,3 +1,9 @@
+var _rows = 10;
+var _iterations = 0;
+var _current_item;
+var _current_name;
+var _currentPage = 'globalPage'
+
 $(document).ready(function () {
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
@@ -8,11 +14,6 @@ $(document).ready(function () {
     createDropdowns();
 })
 
-var _rows = 10;
-var _iterations = 0;
-var _current_item;
-var _current_name;
-
 function submitID() {
     alert("The form was submitted");
 }
@@ -20,10 +21,10 @@ function submitID() {
 function getLeaderboard(type, name) {
     const http = new XMLHttpRequest()
     //http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=10&top_n=1")
-    if (window._current_item &&(window._current_item.toLowerCase() != type.toLowerCase() || window._current_name.toLowerCase() != name.toLowerCase())) {
+    if (window._current_item && (window._current_item.toLowerCase() != type.toLowerCase() || window._current_name.toLowerCase() != name.toLowerCase())) {
         window._rows = 10;
         window._iterations = 0;
-    } 
+    }
     http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n=1");
     //http.setRequestHeader("Access-Control-Allow-Origin","*");
     http.send();
@@ -163,15 +164,15 @@ function createDropdowns() {
 
 function addMoreRows() {
     window._iterations = ++window._iterations;
-    switch ( window._iterations) {
+    switch (window._iterations) {
         case 1:
-            window._rows =  window._rows + 10;
+            window._rows = window._rows + 10;
             break;
         case 2:
-            window._rows =  window._rows+ 25;
+            window._rows = window._rows + 25;
             break;
         default:
-            window._rows =  window._rows+ 50;
+            window._rows = window._rows + 50;
             break;
     }
 }
@@ -179,14 +180,45 @@ function addMoreRows() {
 function displayButtonMore(params) {
     //se iterazione è diverso da 0 mostro il bottone
     var button = jQuery('#buttonMore');
-   
-        button[0].classList.remove('hidden');
-        button[0].setAttribute('onclick','getMoreRows("'+window._current_item+'","'+window._current_name+'")');
-        
-    
+
+    button[0].classList.remove('hidden');
+    button[0].setAttribute('onclick', 'getMoreRows("' + window._current_item + '","' + window._current_name + '")');
+
+
 }
-function getMoreRows(current_item,current_name) {
+
+function getMoreRows(current_item, current_name) {
     addMoreRows();
-    console.log(window._rows,'rows');
-    getLeaderboard(current_item,current_name.toLowerCase());
+    console.log(window._rows, 'rows');
+    getLeaderboard(current_item, current_name.toLowerCase());
+}
+
+function switchPage(pageName) {
+    jQuery('#' + pageName)[0].classList.add('bg-primary');
+    jQuery('#page')[0].style = '';
+
+    var normalizedName;
+
+    var otherPage;
+    if (pageName == 'globalPage') {
+        otherPage = 'personalPage';
+        normalizedName = "Global Leaderboard Page"
+        jQuery('#Global')[0].classList.remove('hidden');
+
+    } else {
+        otherPage = 'globalPage';
+        normalizedName = "Personal Leaderboard Page"
+        jQuery('#Global')[0].classList.add('hidden');
+
+    }
+
+    jQuery('#page')[0].textContent = normalizedName;
+
+    if (window._currentPage != pageName) {
+        //alert(pageName);
+        window._currentPage = pageName;
+        jQuery('#' + otherPage)[0].classList.remove('bg-primary');
+
+
+    }
 }

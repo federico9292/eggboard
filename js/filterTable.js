@@ -33,7 +33,13 @@ function getLeaderboard(type, name) {
     name = name.charAt(0).toUpperCase() + name.slice(1)
     window._current_item = type;
     window._current_name = name;
+    jQuery('.spinner-border')[0].style='position: fixed;top:50%; width:10rem; height: 10rem; visibility: show; z-index: 12222!important';
+    jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+
     http.onload = () => {
+        jQuery('.spinner-border')[0].style='width:0rem; height: 0rem; visibility: hidden;';
+        jQuery('.backgroundBlur')[0].style='';
+     
         displayButtonMore();
         displaySearch();
 
@@ -243,12 +249,12 @@ function submitID(e) {
     http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/getPersonalLeaderboard?EID="+eid);
     http.send();
 
-    jQuery('.spinner-border')[0].style='width: 10rem; height: 10rem; visibility: show; z-index: 12222!important';
+    jQuery('.spinner-border')[0].style='position: fixed;top:50%; width: 10rem; height: 10rem; visibility: show; z-index: 12222!important';
     jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
 
     http.onload = function() {
       
-        jQuery('.spinner-border')[0].style='width: 10rem; height: 10rem; visibility: hidden;';
+        jQuery('.spinner-border')[0].style='width:0rem; height: 0rem; visibility: hidden;';
         jQuery('.backgroundBlur')[0].style='';
         
         var response = JSON.parse(http.responseText);

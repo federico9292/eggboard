@@ -21,7 +21,7 @@ function getLeaderboard(type, name) {
     http.onload = () => {
         displaySearch();
         if (type == 'artifact' || type == 'stones') {
-            fillTableArtifact(http.responseText, name);
+            fillTableArtifact(http.responseText, name, type);
         }
         else {
             fillTableIngredient(http.responseText, name);
@@ -61,9 +61,9 @@ function fillTableIngredient(response, name) {
     });
 }
 
-function fillTableArtifact(response, name) {
+function fillTableArtifact(response, name, type) {
     console.log(response);
-    jQuery('.jumbotron h1')[0].textContent = 'Eggboard | Artifact | ' + name;
+    jQuery('.jumbotron h1')[0].textContent = 'Eggboard | ' + type +' | ' + name;
 
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)

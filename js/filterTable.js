@@ -458,11 +458,16 @@ function getMYLeaderboard(eid,personal) {
         jQuery('.backgroundBlur')[0].style='';
         
         var response = JSON.parse(http.responseText);
+        try {
+              
         response.content = response.content.sort(compareSecondColumn);
         console.log(response);
         fillPersonalTable(response.content);
+        } catch (error) {
+            console.log(error);
+            jQuery('#thead_personal tr').remove(); //to clear the columns;
+            jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
+        }
         
-        
-    
 }
 }

@@ -19,37 +19,25 @@
 </head>
 
 <body class="container">
-  <div class="backgroundBlur"></div>
-  <div class="container" style="padding-bottom:2rem; max-width: 100%;">
-    <div hidden>
-      <p>
-      </p>
-      <form onsubmit="submitID()">
-        <label for="eggincid">Insert EI Id</label>
-        <input type="search" id="eggincid"> <input type="submit" value="Submit ID">
-      </form>
-      <p></p>
-    </div>
 
-    <p></p>
-    <p></p>
+  <div class="backgroundBlur">
 
+  </div>
+  <div class="container p-4" style="max-width: 100%;">
     <div class="p-1">
-      <div class="container-fluid"><li class=" fs-4" style="padding-top: 0.5rem;display: flex;align-items: center;padding-bottom: 0.5rem;">
-        <span>
-          <label class=" switch" style="margin-bottom: auto;">
-        <input type="checkbox" id="justOneShip" onclick="toggleDarkMode()" checked>
-        <span class="slider round"></span>
-        </label>
-        </span>
-        <span class="fs-5" style="margin-left: 10px;">Dark Mode</span>
-      </li>
+      <div class="container-fluid">
+        <li class=" fs-4" style="padding-top: 0.5rem;display: flex;align-items: center;padding-bottom: 0.5rem;">
+          <span>
+            <label class=" switch" style="margin-bottom: auto;">
+              <input type="checkbox" id="justOneShip" onclick="toggleDarkMode()" checked>
+              <span class="slider round"></span>
+            </label>
+          </span>
+          <span class="fs-5" style="margin-left: 10px;">Dark Mode</span>
+        </li>
         <h1 style="font-size: -webkit-xxx-large">Eggboard</h1>
-        
         <h2 id="page" class="" style="visibility: visible;">Global Leaderboard Page</h2>  
-        
       </div>
-     
     </div>
 
     <div class="backgroundBlur h-100 d-flex align-items-center justify-content-center">
@@ -109,11 +97,6 @@
       </div>
 
     </div>
-
-
-
-
-
     <br>
     <input class="form-control fs-4 hidden" id="myInput" type="text" placeholder="Type something to search the table">
 
@@ -136,12 +119,14 @@
 
     <p></p>
     <form>
-      <div class="form-group fs-3">
+      <div class="form-group fs-3 p-3">
         <label class="fw-normal" for="EID">Type your Egg,Inc ID to view your personal leaderboards</label>
         <input type="search" class="form-control fs-4" id="EID" aria-describedby="emailHelp" placeholder="Enter EID" value="" onkeyup="saveValue(this)">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your EID with anyone else.</small>
+        <small id="noShare" class="form-text text-muted">We'll never share your EID with anyone else.</small>
+        <p></p>
+        <a href="#" type="submit" class="btn btn-primary fs-3 padding-top-1" onclick="submitID(this)">View leaderboards</a>
       </div>
-      <a href="#" type="submit" class="btn btn-primary fs-3" onclick="submitID(this)">View leaderboards</a>
+      
     </form>
     <p></p>
     <table class="table table-bordered table-condensed table-responsive">
@@ -151,7 +136,6 @@
       </tbody>
     </table>
 
-  </div>
   </div>
 
 

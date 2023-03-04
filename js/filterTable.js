@@ -18,6 +18,15 @@ $(document).ready(function () {
     else {
         jQuery('#EID')[0].value = '';
     }
+
+    /*
+    if(localStorage.getItem("EIDSubmit")){
+        jQuery('#EIDSubmit')[0].value = localStorage.getItem("EIDSubmit");
+    }
+    else {
+        jQuery('#EIDSubmit')[0].value = '';
+    }
+    */
     createDropdowns();
 })
 
@@ -222,49 +231,75 @@ function switchPage(pageName) {
 
     var otherPage;
     if (pageName == 'globalPage') {
-        otherPage = 'personalPage';
+        //otherPage = 'personalPage';
         normalizedName = "Global Leaderboard Page"
         jQuery('#Global')[0].classList.remove('hidden');
         jQuery('#Personal')[0].classList.add('hidden');
-       
+        //jQuery('#Submit')[0].classList.add('hidden');
+
         jQuery('#globalPage')[0].classList.add('active');
         jQuery('#personalPage')[0].classList.remove('active');
+        //jQuery('#submitPage')[0].classList.remove('active');      
 
         jQuery('#thead_personal tr').remove(); //to clear the columns;
         jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
-       
 
-    } else {
-        otherPage = 'globalPage';
+    } else if(pageName == 'personalPage') {
+        //otherPage = 'globalPage';
         normalizedName = "Personal Leaderboard Page"
         jQuery('#Global')[0].classList.add('hidden');
         jQuery('#Personal')[0].classList.remove('hidden');
+        //jQuery('#Submit')[0].classList.add('hidden');
 
         jQuery('#globalPage')[0].classList.remove('active');
         jQuery('#personalPage')[0].classList.add('active');        
+        //jQuery('#submitPage')[0].classList.remove('active');      
 
         jQuery('#thead tr').remove(); //to clear the columns;
         jQuery('#myTable tr').remove(); //To clear the rows;
         
         jQuery('#buttonMore')[0].classList.add('hidden');
         jQuery('#myInput')[0].classList.add('hidden');
-    }
+
+    } 
+    /*else{
+        normalizedName = "Submit Ship Log Page";
+        jQuery('#Global')[0].classList.add('hidden');
+        jQuery('#Personal')[0].classList.add('hidden');
+        jQuery('#Submit')[0].classList.remove('hidden');
+
+        jQuery('#globalPage')[0].classList.remove('active');
+        jQuery('#personalPage')[0].classList.remove('active');    
+        jQuery('#submitPage')[0].classList.add('active');  
+        
+        jQuery('#thead tr').remove(); //to clear the columns;
+        jQuery('#myTable tr').remove(); //To clear the rows;
+
+        jQuery('#thead_personal tr').remove(); //to clear the columns;
+        jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
+
+        jQuery('#buttonMore')[0].classList.add('hidden');
+        jQuery('#myInput')[0].classList.add('hidden');
+  
+    } */
 
      jQuery('#page')[0].textContent = normalizedName;
 
     if (window._currentPage != pageName) {
         //alert(pageName);
         window._currentPage = pageName;
-        jQuery('#' + otherPage)[0].classList.remove('bg-primary');
+        //jQuery('#' + otherPage)[0].classList.remove('bg-primary');
         jQuery('.container-fluid h1')[0].textContent = 'Eggboard';
 
     }
 }
+
 function saveValue(e){
     var id = e.id;  // get the sender's id to save it . 
     var val = e.value; // get the value. 
     localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
 }
+
 function getSavedValue(v){
     if (!localStorage.getItem(v)) {
         return "";// You can change this to your defualt value. 
@@ -272,38 +307,11 @@ function getSavedValue(v){
     return localStorage.getItem(v);
 }
 
-function submitID(e) {
+function getPersonalLeaderboard(e) {
     var eid = document.getElementById("EID").value;
-    const http = new XMLHttpRequest()
-    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/getPersonalLeaderboard?EID="+eid);
-    http.send();
-
-    var spinnerBorder = document.createElement('div');
-    jQuery('body')[0].insertBefore(spinnerBorder, jQuery('body')[0].firstChild)
+    submitEID(eid);    
+    getLeaderboard(eid);
     
-    spinnerBorder.setAttribute('style',"position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 12222!important");
-    spinnerBorder.classList.add("spinner-border");
-    spinnerBorder.classList.add("align-items-center");
-    spinnerBorder.classList.add("d-flex");
-    spinnerBorder.classList.add("justify-content-center");
-
-    jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
-
-    http.onload = function() {
-      
-        jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
-        jQuery('.backgroundBlur')[0].style='';
-        
-        var response = JSON.parse(http.responseText);
-        response.content = response.content.sort(compareSecondColumn);
-        console.log(response);
-        fillPersonalTable(response.content);
-        
-        
-    
-    };
-
-
 }
 
 function fillPersonalTable(response) {
@@ -349,4 +357,62 @@ function compareSecondColumn(a, b) {
 
 function toggleDarkMode() {
     (jQuery('#html')[0].getAttribute("data-bs-theme") == "light")? jQuery('#html')[0].setAttribute('data-bs-theme',"dark") : jQuery('#html')[0].setAttribute('data-bs-theme',"light");
+}
+
+function submitEID(eid) {
+    const http = new XMLHttpRequest()
+    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/sendNewEID?EID="+eid);
+    http.send();
+
+    var spinnerBorder = document.createElement('div');
+    jQuery('body')[0].insertBefore(spinnerBorder, jQuery('body')[0].firstChild)
+    
+    spinnerBorder.setAttribute('style',"position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 12222!important");
+    spinnerBorder.classList.add("spinner-border");
+    spinnerBorder.classList.add("align-items-center");
+    spinnerBorder.classList.add("d-flex");
+    spinnerBorder.classList.add("justify-content-center");
+
+    jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+
+    http.onload = function() {
+      
+        //jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
+        //jQuery('.backgroundBlur')[0].style='';
+        
+        var response = JSON.parse(http.responseText);
+        //response.content = response.content.sort(compareSecondColumn);
+        console.log(response);
+    }  
+}
+
+function getLeaderboard(eid) {
+    const http = new XMLHttpRequest();
+    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/getPersonalLeaderboard?EID="+eid);
+    http.send();
+
+    var spinnerBorder = document.createElement('div');
+    jQuery('body')[0].insertBefore(spinnerBorder, jQuery('body')[0].firstChild)
+    
+    /*
+    spinnerBorder.setAttribute('style',"position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 12222!important");
+    spinnerBorder.classList.add("spinner-border");
+    spinnerBorder.classList.add("align-items-center");
+    spinnerBorder.classList.add("d-flex");
+    spinnerBorder.classList.add("justify-content-center");
+    jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+    */
+    http.onload = function() {
+        
+        jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
+        jQuery('.backgroundBlur')[0].style='';
+        
+        var response = JSON.parse(http.responseText);
+        response.content = response.content.sort(compareSecondColumn);
+        console.log(response);
+        fillPersonalTable(response.content);
+        
+        
+    
+}
 }

@@ -50,7 +50,11 @@
     </li>
     <li class="nav-item">
       <a class="nav-link fs-2" href="#" id="personalPage" onclick="switchPage('personalPage')">Personal</a>
-    </li>
+    </li>    
+    <!-- 
+    <li class="nav-item">
+      <a class="nav-link fs-2" href="#" id="submitPage" onclick="switchPage('submitPage')">Submit EID</a>
+    </li>-->
   </ul>
   <p></p>
 
@@ -124,7 +128,7 @@
         <input type="search" class="form-control fs-4" id="EID" aria-describedby="emailHelp" placeholder="Enter EID" value="" onkeyup="saveValue(this)">
         <small id="noShare" class="form-text text-muted">We'll never share your EID with anyone else.</small>
         <p></p>
-        <a href="#" type="submit" class="btn btn-primary fs-3 padding-top-1" onclick="submitID(this)">View leaderboards</a>
+        <a href="#" type="submit" class="btn btn-primary fs-3 padding-top-1" onclick="getPersonalLeaderboard(this)">View leaderboards</a>
       </div>
       
     </form>
@@ -138,7 +142,25 @@
 
   </div>
 
+  <!--
+  <div id="Submit" class="hidden">
 
+    <p></p>
+    <form>
+      <div class="form-group fs-3 p-3">
+        <label class="fw-normal" for="EIDSubmit">Type your Egg,Inc ID to submit your ship log</label>
+        <input type="search" class="form-control fs-4" id="EIDSubmit"  placeholder="Enter EID" value="" onkeyup="saveValue(this)">
+        <small id="noShare" class="form-text text-muted">We'll never share your EID with anyone else.</small>
+        <p></p>
+        <a href="#" type="submit" class="btn btn-primary fs-3 padding-top-1" onclick="submitEID(this)">Submit ship logs</a>
+      </div>
+      
+    </form>
+    <p></p>
+    
+
+  </div>
+  -->
 
 
 </body>

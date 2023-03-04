@@ -429,6 +429,10 @@ function submitEID(eid) {
         //response.content = response.content.sort(compareSecondColumn);
         console.log(response);
     }  
+
+    http.onerror = function (event) {
+        console.log(event.currentTarget.responseText);
+    }
 }
 
 function getMYLeaderboard(eid,personal) {

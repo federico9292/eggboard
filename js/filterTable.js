@@ -226,6 +226,9 @@ function switchPage(pageName) {
         normalizedName = "Global Leaderboard Page"
         jQuery('#Global')[0].classList.remove('hidden');
         jQuery('#Personal')[0].classList.add('hidden');
+       
+        jQuery('#globalPage')[0].classList.add('active');
+        jQuery('#personalPage')[0].classList.remove('active');
 
         jQuery('#thead_personal tr').remove(); //to clear the columns;
         jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
@@ -236,7 +239,10 @@ function switchPage(pageName) {
         normalizedName = "Personal Leaderboard Page"
         jQuery('#Global')[0].classList.add('hidden');
         jQuery('#Personal')[0].classList.remove('hidden');
-        
+
+        jQuery('#globalPage')[0].classList.remove('active');
+        jQuery('#personalPage')[0].classList.add('active');        
+
         jQuery('#thead tr').remove(); //to clear the columns;
         jQuery('#myTable tr').remove(); //To clear the rows;
         

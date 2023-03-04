@@ -4,6 +4,7 @@ var _current_item;
 var _current_name;
 var _currentPage = 'globalPage'
 var _unique=0;
+var _globalPageName = 'Eggboard';
 
 $(document).ready(function () {
     $("#myInput").on("keyup", function () {
@@ -77,7 +78,24 @@ function getLeaderboard(type, name) {
 
 function fillTableIngredient(response, name) {
     //console.log(response);
+    var span1 = document.createElement('span');
+    span1.classList.add('caret');
+    var span2 = document.createElement('span');
+    span2.classList.add('caret');
+    var span3 = document.createElement('span');
+    span3.classList.add('caret');
+
     jQuery('.container-fluid h1')[0].textContent = 'Eggboard | Ingredient | ' + name;
+    window._globalPageName = 'Eggboard | Ingredient | ' + name;
+    jQuery('#ingredientDropdown')[0].textContent = name+' ';
+    jQuery('#ingredientDropdown')[0].appendChild(span1);
+    
+    jQuery('#stoneDropdown')[0].textContent = 'Stones ';
+    jQuery('#stoneDropdown')[0].appendChild(span2);
+
+    jQuery('#artifactDropdown')[0].textContent = 'Artifacts ';
+    jQuery('#artifactDropdown')[0].appendChild(span3);
+
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
@@ -109,7 +127,29 @@ function fillTableIngredient(response, name) {
 
 function fillTableArtifact(response, name, type) {
     //console.log(response);
+    var span = document.createElement('span');
+    span.classList.add('caret');
+    var span2 = document.createElement('span');
+    span2.classList.add('caret');
+    var span3 = document.createElement('span');
+    span3.classList.add('caret');
+    var span4 = document.createElement('span');
+    span4.classList.add('caret');
+
+    jQuery('#ingredientDropdown')[0].textContent = 'Ingredients ';
+    jQuery('#ingredientDropdown')[0].appendChild(span);
+
+    jQuery('#stoneDropdown')[0].textContent = 'Stones ';
+    jQuery('#stoneDropdown')[0].appendChild(span2);
+
+    jQuery('#artifactDropdown')[0].textContent = 'Artifacts ';    
+    jQuery('#artifactDropdown')[0].appendChild(span3);
+
+    jQuery('#'+type.toLowerCase()+'Dropdown')[0].textContent = name+' ';
+    jQuery('#'+type.toLowerCase()+'Dropdown')[0].appendChild(span4);
+
     jQuery('.container-fluid h1')[0].textContent = 'Eggboard | ' + type + ' | ' + name;
+    window._globalPageName = 'Eggboard | ' + type + ' | ' + name;
 
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
@@ -241,8 +281,10 @@ function switchPage(pageName) {
         jQuery('#personalPage')[0].classList.remove('active');
         //jQuery('#submitPage')[0].classList.remove('active');      
 
-        jQuery('#thead_personal tr').remove(); //to clear the columns;
-        jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
+        //jQuery('#thead_personal tr').remove(); //to clear the columns;
+        //jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
+        jQuery('.container-fluid h1')[0].textContent = window._globalPageName;
+        jQuery('#page')[0].textContent = normalizedName;
 
     } else if(pageName == 'personalPage') {
         //otherPage = 'globalPage';
@@ -255,11 +297,13 @@ function switchPage(pageName) {
         jQuery('#personalPage')[0].classList.add('active');        
         //jQuery('#submitPage')[0].classList.remove('active');      
 
-        jQuery('#thead tr').remove(); //to clear the columns;
-        jQuery('#myTable tr').remove(); //To clear the rows;
+        //jQuery('#thead tr').remove(); //to clear the columns;
+        //jQuery('#myTable tr').remove(); //To clear the rows;
         
         jQuery('#buttonMore')[0].classList.add('hidden');
         jQuery('#myInput')[0].classList.add('hidden');
+        jQuery('#page')[0].textContent = normalizedName;
+        jQuery('.container-fluid h1')[0].textContent = 'Eggboard';
 
     } 
     /*else{
@@ -283,13 +327,12 @@ function switchPage(pageName) {
   
     } */
 
-     jQuery('#page')[0].textContent = normalizedName;
+    
 
     if (window._currentPage != pageName) {
         //alert(pageName);
         window._currentPage = pageName;
         //jQuery('#' + otherPage)[0].classList.remove('bg-primary');
-        jQuery('.container-fluid h1')[0].textContent = 'Eggboard';
 
     }
 }

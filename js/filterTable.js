@@ -68,7 +68,7 @@ function getLeaderboard(type, name) {
 
 function fillTableIngredient(response, name) {
     //console.log(response);
-    jQuery('.jumbotron h1')[0].textContent = 'Eggboard | Ingredient | ' + name;
+    jQuery('.container-fluid h1')[0].textContent = 'Eggboard | Ingredient | ' + name;
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
@@ -100,7 +100,7 @@ function fillTableIngredient(response, name) {
 
 function fillTableArtifact(response, name, type) {
     //console.log(response);
-    jQuery('.jumbotron h1')[0].textContent = 'Eggboard | ' + type + ' | ' + name;
+    jQuery('.container-fluid h1')[0].textContent = 'Eggboard | ' + type + ' | ' + name;
 
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
@@ -250,7 +250,7 @@ function switchPage(pageName) {
         //alert(pageName);
         window._currentPage = pageName;
         jQuery('#' + otherPage)[0].classList.remove('bg-primary');
-        jQuery('.jumbotron h1')[0].textContent = 'Eggboard';
+        jQuery('.container-fluid h1')[0].textContent = 'Eggboard';
 
     }
 }
@@ -339,4 +339,8 @@ function compareSecondColumn(a, b) {
     else {
         return (parseInt(a[1]) < parseInt(b[1])) ? -1 : 1;
     }
+}
+
+function toggleDarkMode() {
+    (jQuery('#html')[0].getAttribute("data-bs-theme") == "light")? jQuery('#html')[0].setAttribute('data-bs-theme',"dark") : jQuery('#html')[0].setAttribute('data-bs-theme',"light");
 }

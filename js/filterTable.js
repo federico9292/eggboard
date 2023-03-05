@@ -404,7 +404,8 @@ function toggleDarkMode() {
 
 function submitEID(eid) {
     const http = new XMLHttpRequest()
-    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/sendNewEID?EID="+eid);
+//    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/sendNewEID?EID="+eid);
+    http.open("GET", "https://egg-brosssh.vercel.app/sendNewEID?EID="+eid);
     http.send();
 
     var spinnerBorder = document.createElement('div');

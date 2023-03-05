@@ -378,13 +378,13 @@ function fillPersonalTable(response) {
         jQuery('#myPersonalTable')
             .append('<tr class=\'fs-5\'><td>' + value[0].charAt(0).toUpperCase() + value[0].slice(1)
             + '</td><td>' + value[1]
+            + '</td><td>' + value[2]
             + '</td><td>' + value[3]
             + '</td><td>' + value[4]
-            + '</td><td>' + value[5][1]
-            + '</td><td>' + value[5][2]
-            + '</td><td>' + value[5][3]
-            + '</td><td>' + ((value[5][4])? value[5][4]: '')
-            + '</td><td>' + value[5]["total"]
+            + '</td><td>' + value[5]
+            + '</td><td>' + value[6]
+            + '</td><td>' + value[7]
+            + '</td><td>' + value[8]
             + '</td></tr>');
     });
 }

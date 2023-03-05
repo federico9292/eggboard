@@ -466,9 +466,7 @@ function getMYLeaderboard(eid,personal) {
         console.log(response, 'after the json parse');
 
         try {
-              
         response.content = response.content.sort(compareSecondColumn);
-        console.log(response);
         fillPersonalTable(response.content);
         } catch (error) {
             console.log(error);

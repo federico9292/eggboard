@@ -438,8 +438,13 @@ function submitEID(eid) {
 function getMYLeaderboard(eid,personal) {
     const http = new XMLHttpRequest();
     http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/getPersonalLeaderboard?EID="+eid);
-    http.send();
-
+    try {
+        http.send();
+    } catch (error) {
+        console.log(error);
+        jQuery('#thead_personal tr').remove(); //to clear the columns;
+        jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
+    }
     var spinnerBorder = document.createElement('div');
     jQuery('body')[0].insertBefore(spinnerBorder, jQuery('body')[0].firstChild)
     

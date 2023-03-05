@@ -461,7 +461,7 @@ function getMYLeaderboard(eid,personal) {
         
         jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
         jQuery('.backgroundBlur')[0].style='';
-        console.log(response, 'before the json parse');
+        console.log(http.responseText, 'before the json parse');
         var response = JSON.parse(http.responseText);
         console.log(response, 'after the json parse');
 

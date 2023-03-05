@@ -459,7 +459,7 @@ function getMYLeaderboard(eid,personal) {
         console.log(response, 'before the json parse');
         var response = JSON.parse(http.responseText);
         console.log(response, 'after the json parse');
-        
+
         try {
               
         response.content = response.content.sort(compareSecondColumn);
@@ -470,6 +470,13 @@ function getMYLeaderboard(eid,personal) {
             jQuery('#thead_personal tr').remove(); //to clear the columns;
             jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
         }
-        
-}
+    }
+    http.onerror = function (event) {
+        console.log("the getPersonalLeaderboard call got an error");
+        console.log(event.currentTarget.responseText);
+        jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
+        jQuery('.backgroundBlur')[0].style='';
+        jQuery('#thead_personal tr').remove(); //to clear the columns;
+        jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
+    }
 }

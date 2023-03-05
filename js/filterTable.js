@@ -37,13 +37,13 @@ function toggleCheckbox() {
 
 function getLeaderboard(type, name) {
     const http = new XMLHttpRequest()
-    //http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=10&top_n=1")
     if (window._current_item && (window._current_item.toLowerCase() != type.toLowerCase() || window._current_name.toLowerCase() != name.toLowerCase())) {
         window._rows = 10;
         window._iterations = 0;
     }
     
-    http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n="+window._unique);
+    //http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n="+window._unique);
+    http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n="+window._unique);
     http.send();
     name = name.charAt(0).toUpperCase() + name.slice(1)
     window._current_item = type;
@@ -438,7 +438,8 @@ function submitEID(eid) {
 
 function getMYLeaderboard(eid,personal) {
     const http = new XMLHttpRequest();
-    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/getPersonalLeaderboard?EID="+eid);
+    http.open("GET", "https://egg-brosssh.vercel.app/getPersonalLeaderboard?EID="+eid);
+//    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/getPersonalLeaderboard?EID="+eid);
     try {
         http.send();
     } catch (error) {

@@ -20,14 +20,14 @@ $(document).ready(function () {
         jQuery('#EID')[0].value = '';
     }
 
-    /*
+    
     if(localStorage.getItem("EIDSubmit")){
         jQuery('#EIDSubmit')[0].value = localStorage.getItem("EIDSubmit");
     }
     else {
         jQuery('#EIDSubmit')[0].value = '';
     }
-    */
+    
     createDropdowns();
 })
 
@@ -275,11 +275,11 @@ function switchPage(pageName) {
         normalizedName = "Global Leaderboard Page"
         jQuery('#Global')[0].classList.remove('hidden');
         jQuery('#Personal')[0].classList.add('hidden');
-        //jQuery('#Submit')[0].classList.add('hidden');
+        jQuery('#Submit')[0].classList.add('hidden');           //scheda submit EID
 
         jQuery('#globalPage')[0].classList.add('active');
         jQuery('#personalPage')[0].classList.remove('active');
-        //jQuery('#submitPage')[0].classList.remove('active');      
+        jQuery('#submitPage')[0].classList.remove('active');    //scheda submit EID 
 
         //jQuery('#thead_personal tr').remove(); //to clear the columns;
         //jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
@@ -291,11 +291,11 @@ function switchPage(pageName) {
         normalizedName = "Personal Leaderboard Page"
         jQuery('#Global')[0].classList.add('hidden');
         jQuery('#Personal')[0].classList.remove('hidden');
-        //jQuery('#Submit')[0].classList.add('hidden');
+        jQuery('#Submit')[0].classList.add('hidden');           //scheda submit EID
 
         jQuery('#globalPage')[0].classList.remove('active');
         jQuery('#personalPage')[0].classList.add('active');        
-        //jQuery('#submitPage')[0].classList.remove('active');      
+        jQuery('#submitPage')[0].classList.remove('active');    //scheda submit EID
 
         //jQuery('#thead tr').remove(); //to clear the columns;
         //jQuery('#myTable tr').remove(); //To clear the rows;
@@ -305,8 +305,8 @@ function switchPage(pageName) {
         jQuery('#page')[0].textContent = normalizedName;
         jQuery('.container-fluid h1')[0].textContent = 'Eggboard';
 
-    } 
-    /*else{
+    }
+    else{                                                       //scheda submit EID
         normalizedName = "Submit Ship Log Page";
         jQuery('#Global')[0].classList.add('hidden');
         jQuery('#Personal')[0].classList.add('hidden');
@@ -316,16 +316,16 @@ function switchPage(pageName) {
         jQuery('#personalPage')[0].classList.remove('active');    
         jQuery('#submitPage')[0].classList.add('active');  
         
-        jQuery('#thead tr').remove(); //to clear the columns;
-        jQuery('#myTable tr').remove(); //To clear the rows;
+        //jQuery('#thead tr').remove(); //to clear the columns;
+        //jQuery('#myTable tr').remove(); //To clear the rows;
 
-        jQuery('#thead_personal tr').remove(); //to clear the columns;
-        jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
+        //jQuery('#thead_personal tr').remove(); //to clear the columns;
+        //jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
 
         jQuery('#buttonMore')[0].classList.add('hidden');
         jQuery('#myInput')[0].classList.add('hidden');
   
-    } */
+    } 
 
     
 
@@ -352,8 +352,8 @@ function getSavedValue(v){
 
 function getPersonalLeaderboard(e) {
     var eid = document.getElementById("EID").value;
-    submitEID(eid);    
-    //getMYLeaderboard(eid);
+    //submitEID(eid);    
+    getMYLeaderboard(eid);
     
 }
 
@@ -402,8 +402,9 @@ function toggleDarkMode() {
     (jQuery('#html')[0].getAttribute("data-bs-theme") == "light")? jQuery('#html')[0].setAttribute('data-bs-theme',"dark") : jQuery('#html')[0].setAttribute('data-bs-theme',"light");
 }
 
-function submitEID(eid) {
-    const http = new XMLHttpRequest()
+function submitEID(e) {
+    var eid = document.getElementById("EIDSubmit").value;
+    const http = new XMLHttpRequest();
 //    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/sendNewEID?EID="+eid);
     http.open("GET", "https://egg-brosssh.vercel.app/sendNewEID?EID="+eid);
     http.send();
@@ -422,9 +423,9 @@ function submitEID(eid) {
 
     http.onload = function() {
 
-        getMYLeaderboard(eid,true);
-        //jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
-        //jQuery('.backgroundBlur')[0].style='';
+        //getMYLeaderboard(eid,true);           //scheda submit EID
+        jQuery('.spinner-border')[0].remove();  //scheda submit EID
+        jQuery('.backgroundBlur')[0].style='';  //scheda submit EID
         
         var response = JSON.parse(http.responseText);
         //response.content = response.content.sort(compareSecondColumn);
@@ -450,7 +451,7 @@ function getMYLeaderboard(eid,personal) {
     var spinnerBorder = document.createElement('div');
     jQuery('body')[0].insertBefore(spinnerBorder, jQuery('body')[0].firstChild)
     
-    if(!personal){
+    //if(!personal){        //scheda submit EID
         spinnerBorder.setAttribute('style',"position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 12222!important");
         spinnerBorder.classList.add("spinner-border");
         spinnerBorder.classList.add("align-items-center");
@@ -458,7 +459,7 @@ function getMYLeaderboard(eid,personal) {
         spinnerBorder.classList.add("justify-content-center");
         jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
         
-    }
+    //}                     //scheda submit EID
     http.onload = function() {
         
         jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';

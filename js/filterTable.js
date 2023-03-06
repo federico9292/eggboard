@@ -459,6 +459,7 @@ function switchPage(pageName) {
         //jQuery('#thead_personal tr').remove(); //to clear the columns;
         //jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
         jQuery('.container-fluid h1')[0].textContent = window._globalPageName;
+        changeName(window._globalPageName,window._current_item,window._current_name);
         jQuery('#page')[0].textContent = normalizedName;
 
     } else if (pageName == 'personalPage') {
@@ -731,7 +732,10 @@ function changeName(firstPart,type,name) {
     var stone;
     var artifact;
     var secondPart;
-    name = name.toLowerCase();
+    if(type !=null || name != null) {
+        name = name.toLowerCase();
+        type = type.toLowerCase();
+    
 
     if (type == 'ingredient'){
         switch (name) {
@@ -791,4 +795,5 @@ function changeName(firstPart,type,name) {
     img.setAttribute('src',  "./assets/" + type+ "s/"  + secondPart + ".webp");
     jQuery('.container-fluid h1')[0].textContent = firstPart;
     jQuery('.container-fluid h1')[0].appendChild(img);
+}
 }

@@ -467,7 +467,7 @@ function submitEID(e) {
 
             console.log(response);   
             const html = 
-        `<div class="toast align-items-center text-bg-`+ successOrError +` border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="50000" ><div class="d-flex">
+        `<div class="toast align-items-center text-bg-`+ successOrError +` border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" ><div class="d-flex">
           <div class="toast-body fs-3">
           `+ content +`
           </div>

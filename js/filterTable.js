@@ -240,6 +240,7 @@ function fillTableStones(response, name) {
         + '<th>T1</th>'
         + '<th>T2</th>'
         + '<th>T3</th>'
+        + '<th>T4</th>'
         + '<th>Total</th></tr>'
     );
 
@@ -254,6 +255,7 @@ function fillTableStones(response, name) {
                 + '</td><td>' + value[5]
                 + '</td><td>' + value[6]
                 + '</td><td>' + value[7]
+                + '</td><td>' + value[8]
                 + '</td></tr>');
     });
 }

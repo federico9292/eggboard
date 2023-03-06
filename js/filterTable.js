@@ -5,9 +5,9 @@ var _current_name;
 var _currentPage = 'globalPage'
 var _unique = 0;
 var _globalPageName = 'Eggboard';
-var _testEndpoint   = 'https://egg-brosssh-git-deployment-brosssh.vercel.app';
-var _prodEndpoint   = 'https://egg-brosssh.vercel.app'
-var _devEndpoint    = 'https://egg-brosssh-9v86ugob7-brosssh.vercel.app';
+var _testEndpoint = 'https://egg-brosssh-git-deployment-brosssh.vercel.app';
+var _prodEndpoint = 'https://egg-brosssh.vercel.app'
+var _devEndpoint = 'https://egg-brosssh-9v86ugob7-brosssh.vercel.app';
 var current_endpoint;
 
 var isTest = false;
@@ -15,7 +15,7 @@ var isTest = false;
 $(document).ready(function () {
 
     isTest ? current_endpoint = window._testEndpoint : current_endpoint = window._prodEndpoint;
-    
+
 
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
@@ -78,9 +78,9 @@ function getLeaderboard(type, name) {
         if (type == 'Artifact') {
             fillTableArtifact(http.responseText, name);
 
-        } else if (type == 'Stone'){
+        } else if (type == 'Stone') {
             fillTableStones(http.responseText, name);
-        }        
+        }
         else {
             fillTableIngredient(http.responseText, name);
         }
@@ -96,14 +96,14 @@ function fillTableIngredient(response, name) {
     var span3 = document.createElement('span');
     span3.classList.add('caret');
     window._globalPageName = 'Eggboard | Ingredient | ' + name;
-    
+
     //changeName
     jQuery('.container-fluid h1')[0].textContent = 'Eggboard | Ingredient | ' + name;
-    changeName(_globalPageName,'ingredient',name);
+    changeName(_globalPageName, 'ingredient', name);
 
     var ingredientDropdown = jQuery('#ingredientDropdown')[0];
     var stoneDropdown = jQuery('#stoneDropdown')[0];
-    var artifactsDropdown =  jQuery('#artifactDropdown')[0];
+    var artifactsDropdown = jQuery('#artifactDropdown')[0];
     ingredientDropdown.textContent = name + ' ';
     ingredientDropdown.appendChild(span1);
 
@@ -153,7 +153,7 @@ function fillTableArtifact(response, name) {
 
     var ingredientDropdown = jQuery('#ingredientDropdown')[0];
     var stoneDropdown = jQuery('#stoneDropdown')[0];
-    var artifactsDropdown =  jQuery('#artifactDropdown')[0];
+    var artifactsDropdown = jQuery('#artifactDropdown')[0];
 
     ingredientDropdown.textContent = 'Ingredients ';
     ingredientDropdown.appendChild(span);
@@ -168,7 +168,7 @@ function fillTableArtifact(response, name) {
 
     //changeName
     jQuery('.container-fluid h1')[0].textContent = 'Eggboard | Artifact |' + name;
-    changeName(_globalPageName,'artifact',name);
+    changeName(_globalPageName, 'artifact', name);
 
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
@@ -208,18 +208,18 @@ function fillTableStones(response, name) {
     span2.classList.add('caret');
     var span3 = document.createElement('span');
     span3.classList.add('caret');
-    
 
-    
+
+
     window._globalPageName = 'Eggboard | Stone | ' + name;
-        //changeName
+    //changeName
     jQuery('.container-fluid h1')[0].textContent = 'Eggboard | Stone | ' + name;
-    changeName(_globalPageName,'stone',name);
+    changeName(_globalPageName, 'stone', name);
 
     var ingredientDropdown = jQuery('#ingredientDropdown')[0];
     var stoneDropdown = jQuery('#stoneDropdown')[0];
-    var artifactsDropdown =  jQuery('#artifactDropdown')[0];
-   
+    var artifactsDropdown = jQuery('#artifactDropdown')[0];
+
     ingredientDropdown.textContent = 'Ingredients';
     ingredientDropdown.appendChild(span1);
 
@@ -281,7 +281,7 @@ function createDropdowns() {
     var stone = '';
 
     arrayIngredients.forEach(element => {
-        
+
         var a = document.createElement('a');
         a.setAttribute('class', 'dropdown-item fs-4');
         a.setAttribute('href', '#');
@@ -303,14 +303,14 @@ function createDropdowns() {
         }
         var image = document.createElement('img');
         image.setAttribute('src', "./assets/ingredients/afx_" + ingredient + ".webp");
-        image.setAttribute('height','32px')
+        image.setAttribute('height', '32px')
         image.setAttribute("onclick", "getLeaderboard(\'ingredient\',\'" + element + "\')");
-        
-        a.text = " "+element.charAt(0).toUpperCase() + element.slice(1);
-        var li = document.createElement('li');  
+
+        a.text = " " + element.charAt(0).toUpperCase() + element.slice(1);
+        var li = document.createElement('li');
         menu_ingredients.appendChild(li);
         li.appendChild(image);
-        li.appendChild(a);   
+        li.appendChild(a);
         //console.log(image.innerHTML);
     });
 
@@ -320,7 +320,7 @@ function createDropdowns() {
         a.setAttribute('href', '#');
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'Stone\',\'" + element + "\')"); //Stones are like Artifacts, with 4 Tiers
-        a.text = " "+element.charAt(0).toUpperCase() + element.slice(1);
+        a.text = " " + element.charAt(0).toUpperCase() + element.slice(1);
         var image = document.createElement('img');
         switch (element) {
             case 'clarity':
@@ -354,8 +354,8 @@ function createDropdowns() {
                 stone = 'afx_shell_stone_4';
                 break
         }
-        image.setAttribute('height','32px')
-        image.setAttribute('src', "./assets/stones/"  + stone + ".webp");
+        image.setAttribute('height', '32px')
+        image.setAttribute('src', "./assets/stones/" + stone + ".webp");
         image.setAttribute("onclick", "getLeaderboard(\'Stone\',\'" + element + "\')");
         var li = document.createElement('li');
         menu_stones.appendChild(li);
@@ -363,27 +363,27 @@ function createDropdowns() {
         li.appendChild(a);
 
     });
-    var arrayIndex=0;
+    var arrayIndex = 0;
     //var arrayRows = menu_artifacts_multi.getElementsByClassName('dropdown-row'); //7 righe
-    
+
     for (let row = 0; row < 7; row++) {
         //var col = arrayRows[row].getElementsByTagName('a');// arrayRows[column].getElementsByClassName('dropdown-item'); //3 colonne
-        for (let column = 0; column < 3; column++,arrayIndex++) {
+        for (let column = 0; column < 3; column++, arrayIndex++) {
             var a = document.createElement('a');
             a.setAttribute('class', 'dropdown-item fs-4');
             a.setAttribute('href', '#');
             a.setAttribute('role', "button");
             a.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + arrayArtifacts[arrayIndex] + "\')");
-            a.text = " "+arrayArtifacts[arrayIndex].charAt(0).toUpperCase() + arrayArtifacts[arrayIndex].slice(1);
+            a.text = " " + arrayArtifacts[arrayIndex].charAt(0).toUpperCase() + arrayArtifacts[arrayIndex].slice(1);
             var image = document.createElement('img');
-            image.setAttribute('src',  "./assets/artifacts/"  + arrayArtifacts[arrayIndex]  + ".webp");
-            image.setAttribute('height','32px')
+            image.setAttribute('src', "./assets/artifacts/" + arrayArtifacts[arrayIndex] + ".webp");
+            image.setAttribute('height', '32px')
             image.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + arrayArtifacts[arrayIndex] + "\')");
 
             menu_artifacts_multi.children[row].appendChild(image);
             menu_artifacts_multi.children[row].appendChild(a);
         }
-        
+
     }
 
     /*
@@ -459,7 +459,7 @@ function switchPage(pageName) {
         //jQuery('#thead_personal tr').remove(); //to clear the columns;
         //jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
         jQuery('.container-fluid h1')[0].textContent = window._globalPageName;
-        changeName(window._globalPageName,window._current_item,window._current_name);
+        changeName(window._globalPageName, window._current_item, window._current_name);
         jQuery('#page')[0].textContent = normalizedName;
 
     } else if (pageName == 'personalPage') {
@@ -502,6 +502,8 @@ function switchPage(pageName) {
         jQuery('#myInput')[0].classList.add('hidden');
 
         jQuery('#page')[0].textContent = normalizedName;
+        jQuery('.container-fluid h1')[0].textContent = 'Eggboard';
+
     }
 
 
@@ -727,73 +729,70 @@ function showToast(successOrError, content) {
     });
 }
 
-function changeName(firstPart,type,name) {
-    var ingredient;
-    var stone;
-    var artifact;
+function changeName(firstPart, type, name) {
     var secondPart;
-    if(type !=null || name != null) {
+    if (type != null || name != null) {
         name = name.toLowerCase();
         type = type.toLowerCase();
-    
 
-    if (type == 'ingredient'){
-        switch (name) {
-            case 'gold':
-                secondPart = 'afx_gold_meteorite_3';
-                break;
 
-            case 'titanium':
-                secondPart = 'afx_solar_titanium_3';
-                break;
+        if (type == 'ingredient') {
+            switch (name) {
+                case 'gold':
+                    secondPart = 'afx_gold_meteorite_3';
+                    break;
 
-            case 'tau':
-                secondPart = 'afx_tau_ceti_geode_3';
-                break;
+                case 'titanium':
+                    secondPart = 'afx_solar_titanium_3';
+                    break;
 
+                case 'tau':
+                    secondPart = 'afx_tau_ceti_geode_3';
+                    break;
+
+            }
         }
-    }
-    else if (type == 'stone'){
-        switch (name) {
-            case 'clarity':
-                secondPart = 'afx_clarity_stone_4';
-                break;
-            case 'lunar':
-                secondPart = 'afx_lunar_stone_4';
-                break
-            case 'prophecy':
-                secondPart = 'afx_prophecy_stone_4';
-                break
-            case 'life':
-                secondPart = 'afx_life_stone_4';
-                break
-            case 'quantum':
-                secondPart = 'afx_quantum_stone_4';
-                break
-            case 'dilithium':
-                secondPart = 'afx_dilithium_stone_4';
-                break
-            case 'soul':
-                secondPart = 'afx_soul_stone_4';
-                break
-            case 'terra':
-                secondPart = 'afx_terra_stone_4';
-                break
-            case 'tachyon':
-                secondPart = 'afx_tachyon_stone_4';
-                break
-            case 'shell':
-                secondPart = 'afx_shell_stone_4';
-                break
+        else if (type == 'stone') {
+            switch (name) {
+                case 'clarity':
+                    secondPart = 'afx_clarity_stone_4';
+                    break;
+                case 'lunar':
+                    secondPart = 'afx_lunar_stone_4';
+                    break
+                case 'prophecy':
+                    secondPart = 'afx_prophecy_stone_4';
+                    break
+                case 'life':
+                    secondPart = 'afx_life_stone_4';
+                    break
+                case 'quantum':
+                    secondPart = 'afx_quantum_stone_4';
+                    break
+                case 'dilithium':
+                    secondPart = 'afx_dilithium_stone_4';
+                    break
+                case 'soul':
+                    secondPart = 'afx_soul_stone_4';
+                    break
+                case 'terra':
+                    secondPart = 'afx_terra_stone_4';
+                    break
+                case 'tachyon':
+                    secondPart = 'afx_tachyon_stone_4';
+                    break
+                case 'shell':
+                    secondPart = 'afx_shell_stone_4';
+                    break
+            }
         }
-    } 
-    else{
-        secondPart = name;
+        else {
+            secondPart = name;
+        }
+        var img = document.createElement('img');
+        img.setAttribute('height', '64px');
+        img.setAttribute('src', "./assets/" + type + "s/" + secondPart + ".webp");
+        jQuery('.container-fluid h1')[0].textContent = firstPart;
+        jQuery('.container-fluid h1')[0].appendChild(img);
     }
-    var img = document.createElement('img');
-    img.setAttribute('height','64px');
-    img.setAttribute('src',  "./assets/" + type+ "s/"  + secondPart + ".webp");
-    jQuery('.container-fluid h1')[0].textContent = firstPart;
-    jQuery('.container-fluid h1')[0].appendChild(img);
-}
 }

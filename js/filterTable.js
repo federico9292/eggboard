@@ -10,7 +10,7 @@ var _prodEndpoint = 'https://egg-brosssh.vercel.app'
 var _devEndpoint = 'https://egg-brosssh-9v86ugob7-brosssh.vercel.app';
 var current_endpoint;
 var prefix;
-
+var localPrefix;
 var isLocal = true;
 var isTest = false;
 
@@ -18,10 +18,9 @@ $(document).ready(function () {
 
     isTest ? current_endpoint = window._testEndpoint : current_endpoint = window._prodEndpoint;
     isLocal? prefix = "./" : "";
+    isLocal? localPrefix = "../" : "";
   
-    $.get(prefix+"js/filterTable.js", function(data) { 
-        console.log('get filterTable.js');
-    })
+
 
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();

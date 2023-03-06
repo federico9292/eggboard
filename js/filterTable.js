@@ -18,9 +18,6 @@ $(document).ready(function () {
 
     isTest ? current_endpoint = window._testEndpoint : current_endpoint = window._prodEndpoint;
     isLocal? prefix = "./" : "";
-    isLocal? localPrefix = "../" : "";
-  
-
 
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();

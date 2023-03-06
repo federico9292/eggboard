@@ -3,7 +3,7 @@ var _iterations = 0;
 var _current_item;
 var _current_name;
 var _currentPage = 'globalPage'
-var _unique=0;
+var _unique = 0;
 var _globalPageName = 'Eggboard';
 var _testEndpoint = 'https://egg-brosssh-git-deployment-brosssh.vercel.app';
 var _prodEndpoint = 'https://egg-brosssh.vercel.app'
@@ -14,7 +14,7 @@ var isTest = false;
 
 $(document).ready(function () {
 
-    isTest? current_endpoint = window._testEndpoint :  current_endpoint = window._prodEndpoint;
+    isTest ? current_endpoint = window._testEndpoint : current_endpoint = window._prodEndpoint;
 
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
@@ -22,26 +22,26 @@ $(document).ready(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
-    if(localStorage.getItem("EID")){
+    if (localStorage.getItem("EID")) {
         jQuery('#EID')[0].value = localStorage.getItem("EID");
     }
     else {
         jQuery('#EID')[0].value = '';
     }
 
-    
-    if(localStorage.getItem("EIDSubmit")){
+
+    if (localStorage.getItem("EIDSubmit")) {
         jQuery('#EIDSubmit')[0].value = localStorage.getItem("EIDSubmit");
     }
     else {
         jQuery('#EIDSubmit')[0].value = '';
     }
-    
+
     createDropdowns();
 })
 
 function toggleCheckbox() {
-   (jQuery('#justOneShip')[0].checked)? window._unique=1:window._unique=0;
+    (jQuery('#justOneShip')[0].checked) ? window._unique = 1 : window._unique = 0;
 }
 
 function getLeaderboard(type, name) {
@@ -50,28 +50,27 @@ function getLeaderboard(type, name) {
         window._rows = 10;
         window._iterations = 0;
     }
-    
-    //http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n="+window._unique);
-    http.open("GET", current_endpoint+"/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n="+window._unique);
+
+    http.open("GET", current_endpoint + "/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n=" + window._unique);
     http.send();
     name = name.charAt(0).toUpperCase() + name.slice(1)
     window._current_item = type;
     window._current_name = name;
     var spinnerBorder = document.createElement('div');
     jQuery('body')[0].insertBefore(spinnerBorder, jQuery('body')[0].firstChild)
-    
-    spinnerBorder.setAttribute('style',"position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 12222!important");
+
+    spinnerBorder.setAttribute('style', "position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 12222!important");
     spinnerBorder.classList.add("spinner-border");
     spinnerBorder.classList.add("align-items-center");
     spinnerBorder.classList.add("d-flex");
     spinnerBorder.classList.add("justify-content-center");
 
-    jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+    jQuery('.backgroundBlur')[0].style = 'position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
 
     http.onload = () => {
         jQuery('.spinner-border')[0].remove();
-        jQuery('.backgroundBlur')[0].style='';
-     
+        jQuery('.backgroundBlur')[0].style = '';
+
         displayButtonMore();
         displaySearch();
 
@@ -96,9 +95,9 @@ function fillTableIngredient(response, name) {
 
     jQuery('.container-fluid h1')[0].textContent = 'Eggboard | Ingredient | ' + name;
     window._globalPageName = 'Eggboard | Ingredient | ' + name;
-    jQuery('#ingredientDropdown')[0].textContent = name+' ';
+    jQuery('#ingredientDropdown')[0].textContent = name + ' ';
     jQuery('#ingredientDropdown')[0].appendChild(span1);
-    
+
     jQuery('#stoneDropdown')[0].textContent = 'Stones ';
     jQuery('#stoneDropdown')[0].appendChild(span2);
 
@@ -151,11 +150,11 @@ function fillTableArtifact(response, name, type) {
     jQuery('#stoneDropdown')[0].textContent = 'Stones ';
     jQuery('#stoneDropdown')[0].appendChild(span2);
 
-    jQuery('#artifactDropdown')[0].textContent = 'Artifacts ';    
+    jQuery('#artifactDropdown')[0].textContent = 'Artifacts ';
     jQuery('#artifactDropdown')[0].appendChild(span3);
 
-    jQuery('#'+type.toLowerCase()+'Dropdown')[0].textContent = name+' ';
-    jQuery('#'+type.toLowerCase()+'Dropdown')[0].appendChild(span4);
+    jQuery('#' + type.toLowerCase() + 'Dropdown')[0].textContent = name + ' ';
+    jQuery('#' + type.toLowerCase() + 'Dropdown')[0].appendChild(span4);
 
     jQuery('.container-fluid h1')[0].textContent = 'Eggboard | ' + type + ' | ' + name;
     window._globalPageName = 'Eggboard | ' + type + ' | ' + name;
@@ -295,7 +294,7 @@ function switchPage(pageName) {
         jQuery('.container-fluid h1')[0].textContent = window._globalPageName;
         jQuery('#page')[0].textContent = normalizedName;
 
-    } else if(pageName == 'personalPage') {
+    } else if (pageName == 'personalPage') {
         //otherPage = 'globalPage';
         normalizedName = "Personal Leaderboard Page"
         jQuery('#Global')[0].classList.add('hidden');
@@ -303,28 +302,28 @@ function switchPage(pageName) {
         jQuery('#Submit')[0].classList.add('hidden');           //scheda submit EID
 
         jQuery('#globalPage')[0].classList.remove('active');
-        jQuery('#personalPage')[0].classList.add('active');        
+        jQuery('#personalPage')[0].classList.add('active');
         jQuery('#submitPage')[0].classList.remove('active');    //scheda submit EID
 
         //jQuery('#thead tr').remove(); //to clear the columns;
         //jQuery('#myTable tr').remove(); //To clear the rows;
-        
+
         jQuery('#buttonMore')[0].classList.add('hidden');
         jQuery('#myInput')[0].classList.add('hidden');
         jQuery('#page')[0].textContent = normalizedName;
         jQuery('.container-fluid h1')[0].textContent = 'Eggboard';
 
     }
-    else{                                                       //scheda submit EID
+    else {                                                       //scheda submit EID
         normalizedName = "Submit Ship Log Page";
         jQuery('#Global')[0].classList.add('hidden');
         jQuery('#Personal')[0].classList.add('hidden');
         jQuery('#Submit')[0].classList.remove('hidden');
 
         jQuery('#globalPage')[0].classList.remove('active');
-        jQuery('#personalPage')[0].classList.remove('active');    
-        jQuery('#submitPage')[0].classList.add('active');  
-        
+        jQuery('#personalPage')[0].classList.remove('active');
+        jQuery('#submitPage')[0].classList.add('active');
+
         //jQuery('#thead tr').remove(); //to clear the columns;
         //jQuery('#myTable tr').remove(); //To clear the rows;
 
@@ -333,11 +332,11 @@ function switchPage(pageName) {
 
         jQuery('#buttonMore')[0].classList.add('hidden');
         jQuery('#myInput')[0].classList.add('hidden');
-  
-        jQuery('#page')[0].textContent = normalizedName;
-    } 
 
-    
+        jQuery('#page')[0].textContent = normalizedName;
+    }
+
+
 
     if (window._currentPage != pageName) {
         //alert(pageName);
@@ -347,13 +346,13 @@ function switchPage(pageName) {
     }
 }
 
-function saveValue(e){
+function saveValue(e) {
     var id = e.id;  // get the sender's id to save it . 
     var val = e.value; // get the value. 
     localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
 }
 
-function getSavedValue(v){
+function getSavedValue(v) {
     if (!localStorage.getItem(v)) {
         return "";// You can change this to your defualt value. 
     }
@@ -364,13 +363,13 @@ function getPersonalLeaderboard(e) {
     var eid = document.getElementById("EID").value;
     //submitEID(eid);    
     getMYLeaderboard(eid);
-    
+
 }
 
 function fillPersonalTable(response) {
     jQuery('#thead_personal tr').remove(); //to clear the columns;
     jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
-   
+
     jQuery('#thead_personal').append(
         '<tr class=\'fs-4\'><th>Item Name</th>'
         + '<th>Position</th>'
@@ -387,20 +386,20 @@ function fillPersonalTable(response) {
     jQuery.each(response, function (_key, value) {
         jQuery('#myPersonalTable')
             .append('<tr class=\'fs-5\'><td>' + value[0].charAt(0).toUpperCase() + value[0].slice(1)
-            + '</td><td>' + value[1]
-            + '</td><td>' + value[2]
-            + '</td><td>' + value[3]
-            + '</td><td>' + value[4]
-            + '</td><td>' + value[5]
-            + '</td><td>' + value[6]
-            + '</td><td>' + value[7]
-            + '</td><td>' + value[8]
-            + '</td></tr>');
+                + '</td><td>' + value[1]
+                + '</td><td>' + value[2]
+                + '</td><td>' + value[3]
+                + '</td><td>' + value[4]
+                + '</td><td>' + value[5]
+                + '</td><td>' + value[6]
+                + '</td><td>' + value[7]
+                + '</td><td>' + value[8]
+                + '</td></tr>');
     });
 }
 
 function compareSecondColumn(a, b) {
-    if ( parseInt(a[1]) === parseInt(b[1])) {
+    if (parseInt(a[1]) === parseInt(b[1])) {
         return 0;
     }
     else {
@@ -409,109 +408,57 @@ function compareSecondColumn(a, b) {
 }
 
 function toggleDarkMode() {
-    (jQuery('#html')[0].getAttribute("data-bs-theme") == "light")? jQuery('#html')[0].setAttribute('data-bs-theme',"dark") : jQuery('#html')[0].setAttribute('data-bs-theme',"light");
+    (jQuery('#html')[0].getAttribute("data-bs-theme") == "light") ? jQuery('#html')[0].setAttribute('data-bs-theme', "dark") : jQuery('#html')[0].setAttribute('data-bs-theme', "light");
 }
 
 function submitEID(e) {
     var eid = document.getElementById("EIDSubmit").value;
     const http = new XMLHttpRequest();
-//    http.open("GET", "/sendNewEID?EID="+eid);
-    http.open("GET", current_endpoint+"/sendNewEID?EID="+eid);
+    http.open("GET", current_endpoint + "/sendNewEID?EID=" + eid);
     http.send();
 
     var spinnerBorder = document.createElement('div');
     jQuery('body')[0].insertBefore(spinnerBorder, jQuery('body')[0].firstChild)
-    
-    spinnerBorder.setAttribute('style',"position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 1222!important");
+
+    spinnerBorder.setAttribute('style', "position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 1222!important");
     spinnerBorder.classList.add("spinner-border");
     spinnerBorder.classList.add("align-items-center");
     spinnerBorder.classList.add("d-flex");
     spinnerBorder.classList.add("justify-content-center");
 
 
-    jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+    jQuery('.backgroundBlur')[0].style = 'position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
 
-    http.onload = function() {
-
+    http.onload = function () {
         //getMYLeaderboard(eid,true);           //scheda submit EID
         jQuery('.spinner-border')[0].remove();  //scheda submit EID
-        jQuery('.backgroundBlur')[0].style='';  //scheda submit EID
+        jQuery('.backgroundBlur')[0].style = '';  //scheda submit EID
         const toastElList = document.querySelectorAll('.toast')
         const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl))
         var content = http.responseText;
-       
+
         var successOrError;
         try {
             var response = JSON.parse(http.responseText);
-            
-            successOrError = (response.success)? "success":"danger";
+            successOrError = (response.success) ? "success" : "danger";
             content = response.content;
-            if(response.content.indexOf("You can submit your EID on ")>-1){
-                //parsa la data
-                //aggiungi timezione
-                //aggiungi DST 
-               var date = new Date(Date.parse(response.content.substring(response.content.indexOf("You can submit your EID on ")) ));
-               //date.setHours(date.getHours()+1); 
-               console.log(date); 
-               var dateNow = new Date(Date.now());
-               //var offset = dateNow.getTimezoneOffset();
-               //dateNow = Date(dateNow-(offset*60*1000));
-               //dateNow = Date.parse(dateNow)
-               var minutes = ((date - dateNow)/1000)/60;
-               content = "You can submit your EID again in  " + minutes.toString().substring(0,minutes.toString().indexOf('.')) + ' minutes';
-                //date.toLocaleTimeString() + " " + date.toLocaleDateString();
+            if (response.content.indexOf("You can submit your EID on ") > -1) {
+                var date = new Date(Date.parse(response.content.substring(response.content.indexOf("You can submit your EID on "))));
+                //console.log(date); 
+                var dateNow = new Date(Date.now());
+                var minutes = ((date - dateNow) / 1000) / 60;
+                content = "You can submit your EID again in  " + minutes.toString().substring(0, minutes.toString().indexOf('.')) + ((minutes > 1) ? minutes + ' minutes' : minutes + ' minute');
             }
         } catch (error) {
             successOrError = "danger";
         }
         finally {
-
-            console.log(response);   
-            const html = 
-        `<div class="toast align-items-center text-bg-`+ successOrError +` border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" ><div class="d-flex">
-          <div class="toast-body fs-3">
-          `+ content +`
-          </div>
-          <button type="button" class="btn-close btn-close-white me-2 m-auto fs-3" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>`
-
-        const container = document.getElementById("toast-container");
-        container.innerHTML = container.innerHTML + html;
-
-        const toastElList = document.querySelectorAll(".toast");
-        toastElList.forEach((toastEl) => {
-          const inst = bootstrap.Toast.getOrCreateInstance(toastEl, {
-            animation:false // fix the issue because no delay in queueCallback
-          });
-          inst.show();
-    
-            toastEl.addEventListener(
-            "hide.bs.toast",
-            () => {
-            });
-          toastEl.addEventListener(
-            "hidden.bs.toast",
-            () => {
-              inst.dispose();
-              toastEl.remove();
-              //console.log(inst, toastEl);
-            },
-            {
-              once: true
-            }
-          );
-          
-          
-          
-        });
-
-
+            console.log(response);
+            showToast(successOrError, content);
         }
-       
-        //response.content = response.content.sort(compareSecondColumn);
     }
 
-  
+
 
     http.onerror = function (event) {
         console.log(event.currentTarget.responseText);
@@ -519,9 +466,9 @@ function submitEID(e) {
 
 }
 
-function getMYLeaderboard(eid,personal) {
+function getMYLeaderboard(eid, personal) {
     const http = new XMLHttpRequest();
-    http.open("GET", current_endpoint+"/getPersonalLeaderboard?EID="+eid);
+    http.open("GET", current_endpoint + "/getPersonalLeaderboard?EID=" + eid);
     try {
         http.send();
     } catch (error) {
@@ -531,27 +478,38 @@ function getMYLeaderboard(eid,personal) {
     }
     var spinnerBorder = document.createElement('div');
     jQuery('body')[0].insertBefore(spinnerBorder, jQuery('body')[0].firstChild)
-    
+
     //if(!personal){        //scheda submit EID
-        spinnerBorder.setAttribute('style',"position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 12222!important");
-        spinnerBorder.classList.add("spinner-border");
-        spinnerBorder.classList.add("align-items-center");
-        spinnerBorder.classList.add("d-flex");
-        spinnerBorder.classList.add("justify-content-center");
-        jQuery('.backgroundBlur')[0].style='position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
-        
+    spinnerBorder.setAttribute('style', "position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 12222!important");
+    spinnerBorder.classList.add("spinner-border");
+    spinnerBorder.classList.add("align-items-center");
+    spinnerBorder.classList.add("d-flex");
+    spinnerBorder.classList.add("justify-content-center");
+    jQuery('.backgroundBlur')[0].style = 'position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+
     //}                     //scheda submit EID
-    http.onload = function() {
-        
+    http.onload = function () {
+
         jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
-        jQuery('.backgroundBlur')[0].style='';
-        console.log(http.responseText, 'before the json parse');
-        var response = JSON.parse(http.responseText);
-        console.log(response, 'after the json parse');
+        jQuery('.backgroundBlur')[0].style = '';
+        //console.log(http.responseText, 'before the json parse');
+        var content = http.responseText;
+        var successOrError;
 
         try {
-        response.content = response.content.sort(compareSecondColumn);
-        fillPersonalTable(response.content);
+            var response = JSON.parse(http.responseText);
+            successOrError = (response.success) ? "success" : "danger";
+            //console.log(response, 'after the json parse');
+            if (typeof (response.content) != 'string') {
+                response.content = response.content.sort(compareSecondColumn);
+                
+                fillPersonalTable(response.content);
+            } else {
+                content = response.content;
+                showToast(successOrError, content);
+            }
+
+
         } catch (error) {
             console.log(error);
             jQuery('#thead_personal tr').remove(); //to clear the columns;
@@ -562,24 +520,41 @@ function getMYLeaderboard(eid,personal) {
         console.log("the getPersonalLeaderboard call got an error");
         console.log(event.currentTarget.responseText);
         jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
-        jQuery('.backgroundBlur')[0].style='';
+        jQuery('.backgroundBlur')[0].style = '';
         jQuery('#thead_personal tr').remove(); //to clear the columns;
         jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
     }
 }
 
-function showToast(params) {
+function showToast(successOrError, content) {
+    const html =
+        `<div class="toast align-items-center text-bg-` + successOrError + ` border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" ><div class="d-flex">
+    <div class="toast-body fs-3">`+ content + `</div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto fs-3" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>`
 
+    const container = document.getElementById("toast-container");
+    container.innerHTML = container.innerHTML + html;
 
-Array.from(document.querySelectorAll(".toast-me")).forEach((el) => {
-  el.addEventListener("click", (ev) => {
-   
-
-
-
-
-  });
-});
-
+    const toastElList = document.querySelectorAll(".toast");
+    toastElList.forEach((toastEl) => {
+        const inst = bootstrap.Toast.getOrCreateInstance(toastEl, {
+            animation: false // fix the issue because no delay in queueCallback
+        });
+        inst.show();
+        toastEl.addEventListener(
+            "hide.bs.toast",
+            () => { });
+        toastEl.addEventListener(
+            "hidden.bs.toast",
+            () => {
+                inst.dispose();
+                toastEl.remove();
+                //console.log(inst, toastEl);
+            },
+            {
+                once: true
+            }
+        );
+    });
 }
-

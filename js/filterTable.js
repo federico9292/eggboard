@@ -231,7 +231,7 @@ function createDropdowns() {
                 break;
 
         }
-        image.setAttribute('src', "/eggboard/assets/ingredients/afx_" + ingredient + ".png");
+        image.setAttribute('src', "/assets/ingredients/afx_" + ingredient + ".png");
         var li = document.createElement('li');
         menu_ingredients.appendChild(li);
         li.appendChild(image);
@@ -279,7 +279,7 @@ function createDropdowns() {
                 break
         }
 
-        image.setAttribute('src', "/eggboard/assets/stones/" + stone + ".png");
+        image.setAttribute('src', "/assets/stones/" + stone + ".png");
         var li = document.createElement('li');
         menu_stones.appendChild(li);
         li.appendChild(image);
@@ -295,7 +295,7 @@ function createDropdowns() {
         a.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + element + "\')");
         a.text = element.charAt(0).toUpperCase() + element.slice(1);
         var image = document.createElement('img');
-        image.setAttribute('src', "/eggboard/assets/artifacts/" + element + ".png");
+        image.setAttribute('src', "/assets/artifacts/" + element + ".png");
         var li = document.createElement('li');
         menu_artifacts.appendChild(li);
         li.appendChild(image);

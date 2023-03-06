@@ -270,6 +270,8 @@ function displaySearch() {
 
 function createDropdowns() {
     var menu_ingredients = jQuery('#dropdown_menu_Ingredients')[0];
+    var menu_artifacts_multi = jQuery('#dropdown_menu_Artifacts_multi')[0];
+
     var menu_stones = jQuery('#dropdown_menu_Stones')[0];
     var menu_artifacts = jQuery('#dropdown_menu_Artifacts')[0];
     var arrayIngredients = "gold, tau, titanium".split(", ");
@@ -309,7 +311,7 @@ function createDropdowns() {
         menu_ingredients.appendChild(li);
         li.appendChild(image);
         li.appendChild(a);   
-        console.log(image.innerHTML);
+        //console.log(image.innerHTML);
     });
 
     arrayStones.forEach(element => {
@@ -361,7 +363,30 @@ function createDropdowns() {
         li.appendChild(a);
 
     });
+    var arrayIndex=0;
+    //var arrayRows = menu_artifacts_multi.getElementsByClassName('dropdown-row'); //7 righe
+    
+    for (let row = 0; row < 7; row++) {
+        //var col = arrayRows[row].getElementsByTagName('a');// arrayRows[column].getElementsByClassName('dropdown-item'); //3 colonne
+        for (let column = 0; column < 3; column++,arrayIndex++) {
+            var a = document.createElement('a');
+            a.setAttribute('class', 'dropdown-item fs-4');
+            a.setAttribute('href', '#');
+            a.setAttribute('role', "button");
+            a.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + arrayArtifacts[arrayIndex] + "\')");
+            a.text = " "+arrayArtifacts[arrayIndex].charAt(0).toUpperCase() + arrayArtifacts[arrayIndex].slice(1);
+            var image = document.createElement('img');
+            image.setAttribute('src',  "./assets/artifacts/"  + arrayArtifacts[arrayIndex]  + ".webp");
+            image.setAttribute('height','32px')
+            image.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + arrayArtifacts[arrayIndex] + "\')");
 
+            menu_artifacts_multi.children[row].appendChild(image);
+            menu_artifacts_multi.children[row].appendChild(a);
+        }
+        
+    }
+
+    /*
     arrayArtifacts.forEach(element => {
         var a = document.createElement('a');
         a.setAttribute('class', 'dropdown-item fs-4');
@@ -379,7 +404,7 @@ function createDropdowns() {
         li.appendChild(a);
 
     });
-
+*/
 }
 
 function addMoreRows() {

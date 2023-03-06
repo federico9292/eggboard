@@ -72,8 +72,34 @@
     padding-left: 1rem;
   }
 
-  .dropdown-menu.show {
-    width: 140px; 
+  .dropdown-menu.show.dropdown-multicol {
+      width: max-content;
+
   }
 
-  img {cursor: pointer}
+  li {cursor: pointer}
+
+/* rows */
+div.dropdown-multicol{
+  width: 30em;
+}
+div.dropdown-row>a.dropdown-item{
+  display:inline-block;
+  width: 6.7em!important;
+}
+
+/* Columns */
+div.dropdown-multicol2{
+  width: 30em;
+}
+div.dropdown-multicol2>div.dropdown-col{
+  display:inline-block;
+  width: 32%;
+}
+
+
+div.dropdown-row>a.dropdown-item{
+  display:inline-block;
+  width: 10em;
+}
+

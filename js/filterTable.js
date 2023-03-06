@@ -5,8 +5,17 @@ var _current_name;
 var _currentPage = 'globalPage'
 var _unique=0;
 var _globalPageName = 'Eggboard';
+var _testEndpoint = 'https://egg-brosssh-git-deployment-brosssh.vercel.app';
+var _prodEndpoint = 'https://egg-brosssh.vercel.app'
+var _devEndpoint = 'https://egg-brosssh-9v86ugob7-brosssh.vercel.app';
+var current_endpoint;
+
+var isTest = false;
 
 $(document).ready(function () {
+
+    isTest? current_endpoint = window._testEndpoint :  current_endpoint = window._prodEndpoint;
+
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
         $("#myTable tr").filter(function () {
@@ -43,7 +52,7 @@ function getLeaderboard(type, name) {
     }
     
     //http.open("GET", "https://egg-brosssh-nh5u9iyas-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n="+window._unique);
-    http.open("GET", "https://egg-brosssh.vercel.app/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n="+window._unique);
+    http.open("GET", current_endpoint+"/getLeaderboard?element=" + name + "&n=" + window._rows + "&top_n="+window._unique);
     http.send();
     name = name.charAt(0).toUpperCase() + name.slice(1)
     window._current_item = type;
@@ -405,14 +414,14 @@ function toggleDarkMode() {
 function submitEID(e) {
     var eid = document.getElementById("EIDSubmit").value;
     const http = new XMLHttpRequest();
-//    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/sendNewEID?EID="+eid);
-    http.open("GET", "https://egg-brosssh.vercel.app/sendNewEID?EID="+eid);
+//    http.open("GET", "/sendNewEID?EID="+eid);
+    http.open("GET", current_endpoint+"/sendNewEID?EID="+eid);
     http.send();
 
     var spinnerBorder = document.createElement('div');
     jQuery('body')[0].insertBefore(spinnerBorder, jQuery('body')[0].firstChild)
     
-    spinnerBorder.setAttribute('style',"position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 12222!important");
+    spinnerBorder.setAttribute('style',"position: fixed;top:30%;left:38%; width:10rem; height: 10rem; visibility: visible; z-index: 1222!important");
     spinnerBorder.classList.add("spinner-border");
     spinnerBorder.classList.add("align-items-center");
     spinnerBorder.classList.add("d-flex");
@@ -426,21 +435,91 @@ function submitEID(e) {
         //getMYLeaderboard(eid,true);           //scheda submit EID
         jQuery('.spinner-border')[0].remove();  //scheda submit EID
         jQuery('.backgroundBlur')[0].style='';  //scheda submit EID
-        
-        var response = JSON.parse(http.responseText);
+        const toastElList = document.querySelectorAll('.toast')
+        const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl))
+        var content = http.responseText;
+       
+        var successOrError;
+        try {
+            var response = JSON.parse(http.responseText);
+            
+            successOrError = (response.success)? "success":"danger";
+            content = response.content;
+            if(response.content.indexOf("You can submit your EID on ")>-1){
+                //parsa la data
+                //aggiungi timezione
+                //aggiungi DST 
+               var date = new Date(Date.parse(response.content.substring(response.content.indexOf("You can submit your EID on ")) ));
+               //date.setHours(date.getHours()+1); 
+               console.log(date); 
+               var dateNow = new Date(Date.now());
+               //var offset = dateNow.getTimezoneOffset();
+               //dateNow = Date(dateNow-(offset*60*1000));
+               //dateNow = Date.parse(dateNow)
+               var minutes = ((date - dateNow)/1000)/60;
+               content = "You can submit your EID again in  " + minutes.toString().substring(0,minutes.toString().indexOf('.')) + ' minutes';
+                //date.toLocaleTimeString() + " " + date.toLocaleDateString();
+            }
+        } catch (error) {
+            successOrError = "danger";
+        }
+        finally {
+
+            console.log(response);   
+            const html = 
+        `<div class="toast align-items-center text-bg-`+ successOrError +` border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="50000" ><div class="d-flex">
+          <div class="toast-body fs-3">
+          `+ content +`
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto fs-3" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>`
+
+        const container = document.getElementById("toast-container");
+        container.innerHTML = container.innerHTML + html;
+
+        const toastElList = document.querySelectorAll(".toast");
+        toastElList.forEach((toastEl) => {
+          const inst = bootstrap.Toast.getOrCreateInstance(toastEl, {
+            animation:false // fix the issue because no delay in queueCallback
+          });
+          inst.show();
+    
+            toastEl.addEventListener(
+            "hide.bs.toast",
+            () => {
+            });
+          toastEl.addEventListener(
+            "hidden.bs.toast",
+            () => {
+              inst.dispose();
+              toastEl.remove();
+              //console.log(inst, toastEl);
+            },
+            {
+              once: true
+            }
+          );
+          
+          
+          
+        });
+
+
+        }
+       
         //response.content = response.content.sort(compareSecondColumn);
-        console.log(response);
-    }  
+    }
+
+  
 
     http.onerror = function (event) {
         console.log(event.currentTarget.responseText);
     }
-}
 
+}
 function getMYLeaderboard(eid,personal) {
     const http = new XMLHttpRequest();
-    http.open("GET", "https://egg-brosssh.vercel.app/getPersonalLeaderboard?EID="+eid);
-//    http.open("GET", "https://egg-brosssh-9v86ugob7-brosssh.vercel.app/getPersonalLeaderboard?EID="+eid);
+    http.open("GET", current_endpoint+"/getPersonalLeaderboard?EID="+eid);
     try {
         http.send();
     } catch (error) {
@@ -486,3 +565,19 @@ function getMYLeaderboard(eid,personal) {
         jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
     }
 }
+
+function showToast(params) {
+
+
+Array.from(document.querySelectorAll(".toast-me")).forEach((el) => {
+  el.addEventListener("click", (ev) => {
+   
+
+
+
+
+  });
+});
+
+}
+

@@ -215,7 +215,7 @@ function createDropdowns() {
         a.setAttribute('href', '#');
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'ingredient\',\'" + element + "\')");
-        a.text = element.charAt(0).toUpperCase() + element.slice(1);
+        a.text = " "+element.charAt(0).toUpperCase() + element.slice(1);
         var image = document.createElement('img');
         switch (element) {
             case 'gold':
@@ -244,7 +244,7 @@ function createDropdowns() {
         a.setAttribute('href', '#');
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'Stone\',\'" + element + "\')"); //Stones are like Artifacts, with 4 Tiers
-        a.text = element.charAt(0).toUpperCase() + element.slice(1);
+        a.text = " "+element.charAt(0).toUpperCase() + element.slice(1);
         var image = document.createElement('img');
         switch (element) {
             case 'clarity':
@@ -293,7 +293,7 @@ function createDropdowns() {
         a.setAttribute('href', '#');
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + element + "\')");
-        a.text = element.charAt(0).toUpperCase() + element.slice(1);
+        a.text = " "+element.charAt(0).toUpperCase() + element.slice(1);
         var image = document.createElement('img');
         image.setAttribute('src',  "./assets/artifacts/"  + element + ".png");
         var li = document.createElement('li');

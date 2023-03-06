@@ -71,3 +71,7 @@
     width: 130px;
     padding-left: 1rem;
   }
+
+  .dropdown-menu.show {
+    width: 150px; 
+  }

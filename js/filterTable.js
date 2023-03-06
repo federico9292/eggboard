@@ -334,6 +334,7 @@ function switchPage(pageName) {
         jQuery('#buttonMore')[0].classList.add('hidden');
         jQuery('#myInput')[0].classList.add('hidden');
   
+        jQuery('#page')[0].textContent = normalizedName;
     } 
 
     
@@ -517,6 +518,7 @@ function submitEID(e) {
     }
 
 }
+
 function getMYLeaderboard(eid,personal) {
     const http = new XMLHttpRequest();
     http.open("GET", current_endpoint+"/getPersonalLeaderboard?EID="+eid);

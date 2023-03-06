@@ -5,19 +5,17 @@ var _current_name;
 var _currentPage = 'globalPage'
 var _unique = 0;
 var _globalPageName = 'Eggboard';
-var _testEndpoint = 'https://egg-brosssh-git-deployment-brosssh.vercel.app';
-var _prodEndpoint = 'https://egg-brosssh.vercel.app'
-var _devEndpoint = 'https://egg-brosssh-9v86ugob7-brosssh.vercel.app';
+var _testEndpoint   = 'https://egg-brosssh-git-deployment-brosssh.vercel.app';
+var _prodEndpoint   = 'https://egg-brosssh.vercel.app'
+var _devEndpoint    = 'https://egg-brosssh-9v86ugob7-brosssh.vercel.app';
 var current_endpoint;
-var prefix;
-var localPrefix;
-var isLocal = true;
+
 var isTest = false;
 
 $(document).ready(function () {
 
     isTest ? current_endpoint = window._testEndpoint : current_endpoint = window._prodEndpoint;
-    isLocal? prefix = "./" : "";
+    
 
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
@@ -209,7 +207,6 @@ function createDropdowns() {
     var arrayArtifacts = "bob, light, deflector, siab, actuator, monocle, metronome, feather, chalice, compass, rainstick, beak, lens, medallion, gusset, ankh, brooch, vial, necklace, totem, cube".split(", ");
     var ingredient = '';
     var stone = '';
-    var artifact = '';
 
     arrayIngredients.forEach(element => {
 
@@ -234,7 +231,7 @@ function createDropdowns() {
                 break;
 
         }
-        image.setAttribute('src', prefix + "/assets/ingredients/afx_" + ingredient + ".png");
+        image.setAttribute('src', "./assets/ingredients/afx_" + ingredient + ".png");
         var li = document.createElement('li');
         menu_ingredients.appendChild(li);
         li.appendChild(image);
@@ -282,7 +279,7 @@ function createDropdowns() {
                 break
         }
 
-        image.setAttribute('src',  prefix + "/assets/stones/"  + stone + ".png");
+        image.setAttribute('src', "./assets/stones/"  + stone + ".png");
         var li = document.createElement('li');
         menu_stones.appendChild(li);
         li.appendChild(image);
@@ -298,7 +295,7 @@ function createDropdowns() {
         a.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + element + "\')");
         a.text = element.charAt(0).toUpperCase() + element.slice(1);
         var image = document.createElement('img');
-        image.setAttribute('src',  prefix + "/assets/artifacts/"  + element + ".png");
+        image.setAttribute('src',  "./assets/artifacts/"  + element + ".png");
         var li = document.createElement('li');
         menu_artifacts.appendChild(li);
         li.appendChild(image);

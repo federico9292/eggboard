@@ -75,10 +75,12 @@ function getLeaderboard(type, name) {
         displayButtonMore();
         displaySearch();
 
-        if (type == 'Artifact' || type == 'Stone') {
-            fillTableArtifact(http.responseText, name, type);
+        if (type == 'Artifact') {
+            fillTableArtifact(http.responseText, name);
 
-        }
+        } else if (type == 'Stone'){
+            fillTableStones(http.responseText, name);
+        }        
         else {
             fillTableIngredient(http.responseText, name);
         }
@@ -93,17 +95,23 @@ function fillTableIngredient(response, name) {
     span2.classList.add('caret');
     var span3 = document.createElement('span');
     span3.classList.add('caret');
-
-    jQuery('.container-fluid h1')[0].textContent = 'Eggboard | Ingredient | ' + name;
     window._globalPageName = 'Eggboard | Ingredient | ' + name;
-    jQuery('#ingredientDropdown')[0].textContent = name + ' ';
-    jQuery('#ingredientDropdown')[0].appendChild(span1);
+    
+    //changeName
+    jQuery('.container-fluid h1')[0].textContent = 'Eggboard | Ingredient | ' + name;
+    changeName(_globalPageName,'ingredient',name);
 
-    jQuery('#stoneDropdown')[0].textContent = 'Stones ';
-    jQuery('#stoneDropdown')[0].appendChild(span2);
+    var ingredientDropdown = jQuery('#ingredientDropdown')[0];
+    var stoneDropdown = jQuery('#stoneDropdown')[0];
+    var artifactsDropdown =  jQuery('#artifactDropdown')[0];
+    ingredientDropdown.textContent = name + ' ';
+    ingredientDropdown.appendChild(span1);
 
-    jQuery('#artifactDropdown')[0].textContent = 'Artifacts ';
-    jQuery('#artifactDropdown')[0].appendChild(span3);
+    stoneDropdown.textContent = 'Stones ';
+    stoneDropdown.appendChild(span2);
+
+    artifactsDropdown.textContent = 'Artifacts ';
+    artifactsDropdown.appendChild(span3);
 
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
@@ -134,7 +142,7 @@ function fillTableIngredient(response, name) {
     });
 }
 
-function fillTableArtifact(response, name, type) {
+function fillTableArtifact(response, name) {
     //console.log(response);
     var span = document.createElement('span');
     span.classList.add('caret');
@@ -142,23 +150,25 @@ function fillTableArtifact(response, name, type) {
     span2.classList.add('caret');
     var span3 = document.createElement('span');
     span3.classList.add('caret');
-    var span4 = document.createElement('span');
-    span4.classList.add('caret');
 
-    jQuery('#ingredientDropdown')[0].textContent = 'Ingredients ';
-    jQuery('#ingredientDropdown')[0].appendChild(span);
+    var ingredientDropdown = jQuery('#ingredientDropdown')[0];
+    var stoneDropdown = jQuery('#stoneDropdown')[0];
+    var artifactsDropdown =  jQuery('#artifactDropdown')[0];
 
-    jQuery('#stoneDropdown')[0].textContent = 'Stones ';
-    jQuery('#stoneDropdown')[0].appendChild(span2);
+    ingredientDropdown.textContent = 'Ingredients ';
+    ingredientDropdown.appendChild(span);
 
-    jQuery('#artifactDropdown')[0].textContent = 'Artifacts ';
-    jQuery('#artifactDropdown')[0].appendChild(span3);
+    stoneDropdown.textContent = 'Stones ';
+    stoneDropdown.appendChild(span2);
 
-    jQuery('#' + type.toLowerCase() + 'Dropdown')[0].textContent = name + ' ';
-    jQuery('#' + type.toLowerCase() + 'Dropdown')[0].appendChild(span4);
+    artifactsDropdown.textContent = name + ' ';
+    artifactsDropdown.appendChild(span3);
 
-    jQuery('.container-fluid h1')[0].textContent = 'Eggboard | ' + type + ' | ' + name;
-    window._globalPageName = 'Eggboard | ' + type + ' | ' + name;
+    window._globalPageName = 'Eggboard | Artifact | ' + name;
+
+    //changeName
+    jQuery('.container-fluid h1')[0].textContent = 'Eggboard | Artifact |' + name;
+    changeName(_globalPageName,'artifact',name);
 
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
@@ -190,6 +200,64 @@ function fillTableArtifact(response, name, type) {
     });
 }
 
+function fillTableStones(response, name) {
+    //console.log(response);
+    var span1 = document.createElement('span');
+    span1.classList.add('caret');
+    var span2 = document.createElement('span');
+    span2.classList.add('caret');
+    var span3 = document.createElement('span');
+    span3.classList.add('caret');
+    
+
+    
+    window._globalPageName = 'Eggboard | Stone | ' + name;
+        //changeName
+    jQuery('.container-fluid h1')[0].textContent = 'Eggboard | Stone | ' + name;
+    changeName(_globalPageName,'stone',name);
+
+    var ingredientDropdown = jQuery('#ingredientDropdown')[0];
+    var stoneDropdown = jQuery('#stoneDropdown')[0];
+    var artifactsDropdown =  jQuery('#artifactDropdown')[0];
+   
+    ingredientDropdown.textContent = 'Ingredients';
+    ingredientDropdown.appendChild(span1);
+
+    stoneDropdown.textContent = name + ' ';
+    stoneDropdown.appendChild(span2);
+
+    artifactsDropdown.textContent = 'Artifacts ';
+    artifactsDropdown.appendChild(span3);
+
+    jQuery('#thead tr').remove(); //to clear the columns;
+    jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
+    response = JSON.parse(response);
+    jQuery('#thead').append(
+        '<tr class=\'fs-4\'><th>Pos</th>'
+        + '<th>Name</th>'
+        + '<th>Stars</th>'
+        + '<th>Capacity</th>'
+        + '<th>T1</th>'
+        + '<th>T2</th>'
+        + '<th>T3</th>'
+        + '<th>Total</th></tr>'
+    );
+
+
+    jQuery.each(response.content, function (_key, value) {
+        jQuery('#myTable')
+            .append('<tr class=\'fs-5\'><td>' + value[0]
+                + '</td><td>' + value[1]
+                + '</td><td>' + value[2]
+                + '</td><td>' + value[3]
+                + '</td><td>' + value[4]
+                + '</td><td>' + value[5]
+                + '</td><td>' + value[6]
+                + '</td><td>' + value[7]
+                + '</td></tr>');
+    });
+}
+
 function displaySearch() {
 
     jQuery('#myInput')[0].classList.remove('hidden');
@@ -209,14 +277,12 @@ function createDropdowns() {
     var stone = '';
 
     arrayIngredients.forEach(element => {
-
+        
         var a = document.createElement('a');
         a.setAttribute('class', 'dropdown-item fs-4');
         a.setAttribute('href', '#');
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'ingredient\',\'" + element + "\')");
-        a.text = " "+element.charAt(0).toUpperCase() + element.slice(1);
-        var image = document.createElement('img');
         switch (element) {
             case 'gold':
                 ingredient = 'gold_meteorite_3';
@@ -231,11 +297,17 @@ function createDropdowns() {
                 break;
 
         }
-        image.setAttribute('src', "./assets/ingredients/afx_" + ingredient + ".png");
-        var li = document.createElement('li');
+        var image = document.createElement('img');
+        image.setAttribute('src', "./assets/ingredients/afx_" + ingredient + ".webp");
+        image.setAttribute('height','32px')
+        image.setAttribute("onclick", "getLeaderboard(\'ingredient\',\'" + element + "\')");
+        
+        a.text = " "+element.charAt(0).toUpperCase() + element.slice(1);
+        var li = document.createElement('li');  
         menu_ingredients.appendChild(li);
         li.appendChild(image);
-        li.appendChild(a);
+        li.appendChild(a);   
+        console.log(image.innerHTML);
     });
 
     arrayStones.forEach(element => {
@@ -278,8 +350,9 @@ function createDropdowns() {
                 stone = 'afx_shell_stone_4';
                 break
         }
-
-        image.setAttribute('src', "./assets/stones/"  + stone + ".png");
+        image.setAttribute('height','32px')
+        image.setAttribute('src', "./assets/stones/"  + stone + ".webp");
+        image.setAttribute("onclick", "getLeaderboard(\'Stone\',\'" + element + "\')");
         var li = document.createElement('li');
         menu_stones.appendChild(li);
         li.appendChild(image);
@@ -295,7 +368,9 @@ function createDropdowns() {
         a.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + element + "\')");
         a.text = " "+element.charAt(0).toUpperCase() + element.slice(1);
         var image = document.createElement('img');
-        image.setAttribute('src',  "./assets/artifacts/"  + element + ".png");
+        image.setAttribute('src',  "./assets/artifacts/"  + element + ".webp");
+        image.setAttribute('height','32px')
+        image.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + element + "\')");
         var li = document.createElement('li');
         menu_artifacts.appendChild(li);
         li.appendChild(image);
@@ -622,4 +697,71 @@ function showToast(successOrError, content) {
             }
         );
     });
+}
+
+function changeName(firstPart,type,name) {
+    var ingredient;
+    var stone;
+    var artifact;
+    var secondPart;
+    name = name.toLowerCase();
+
+    if (type == 'ingredient'){
+        switch (name) {
+            case 'gold':
+                secondPart = 'afx_gold_meteorite_3';
+                break;
+
+            case 'titanium':
+                secondPart = 'afx_solar_titanium_3';
+                break;
+
+            case 'tau':
+                secondPart = 'afx_tau_ceti_geode_3';
+                break;
+
+        }
+    }
+    else if (type == 'stone'){
+        switch (name) {
+            case 'clarity':
+                secondPart = 'afx_clarity_stone_4';
+                break;
+            case 'lunar':
+                secondPart = 'afx_lunar_stone_4';
+                break
+            case 'prophecy':
+                secondPart = 'afx_prophecy_stone_4';
+                break
+            case 'life':
+                secondPart = 'afx_life_stone_4';
+                break
+            case 'quantum':
+                secondPart = 'afx_quantum_stone_4';
+                break
+            case 'dilithium':
+                secondPart = 'afx_dilithium_stone_4';
+                break
+            case 'soul':
+                secondPart = 'afx_soul_stone_4';
+                break
+            case 'terra':
+                secondPart = 'afx_terra_stone_4';
+                break
+            case 'tachyon':
+                secondPart = 'afx_tachyon_stone_4';
+                break
+            case 'shell':
+                secondPart = 'afx_shell_stone_4';
+                break
+        }
+    } 
+    else{
+        secondPart = name;
+    }
+    var img = document.createElement('img');
+    img.setAttribute('height','64px');
+    img.setAttribute('src',  "./assets/" + type+ "s/"  + secondPart + ".webp");
+    jQuery('.container-fluid h1')[0].textContent = firstPart;
+    jQuery('.container-fluid h1')[0].appendChild(img);
 }

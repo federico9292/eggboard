@@ -62,4 +62,12 @@
   }
   .dropdown-menu > li > a{
     color:inherit !important;
+    width: -webkit-fill-available!important;
+    line-height:2.5;
+    display: contents;
+  }
+
+  .dropdown-menu > li {
+    width: 130px;
+    padding-left: 1rem;
   }

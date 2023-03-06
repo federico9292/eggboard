@@ -204,16 +204,38 @@ function createDropdowns() {
     var arrayIngredients = "gold, tau, titanium".split(", ");
     var arrayStones = "clarity, lunar, prophecy, life, quantum, dilithium, soul, terra, tachyon, shell".split(", ");
     var arrayArtifacts = "bob, light, deflector, siab, actuator, monocle, metronome, feather, chalice, compass, rainstick, beak, lens, medallion, gusset, ankh, brooch, vial, necklace, totem, cube".split(", ");
-
+    var ingredient = '';
+    var stone = '';
+    var artifact = '';
 
     arrayIngredients.forEach(element => {
+
         var a = document.createElement('a');
         a.setAttribute('class', 'dropdown-item fs-4');
         a.setAttribute('href', '#');
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'ingredient\',\'" + element + "\')");
         a.text = element.charAt(0).toUpperCase() + element.slice(1);
-        menu_ingredients.appendChild(document.createElement('li')).appendChild(a);
+        var image = document.createElement('img');
+        switch (element) {
+            case 'gold':
+                ingredient = 'gold_meteorite_3';
+                break;
+
+            case 'titanium':
+                ingredient = 'solar_titanium_3';
+                break;
+
+            case 'tau':
+                ingredient = 'tau_ceti_geode_3';
+                break;
+
+        }
+        image.setAttribute('src', "../eggboard/assets/ingredients/afx_" + ingredient + ".png");
+        var li = document.createElement('li');
+        menu_ingredients.appendChild(li);
+        li.appendChild(image);
+        li.appendChild(a);
     });
 
     arrayStones.forEach(element => {
@@ -223,7 +245,45 @@ function createDropdowns() {
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'Stone\',\'" + element + "\')"); //Stones are like Artifacts, with 4 Tiers
         a.text = element.charAt(0).toUpperCase() + element.slice(1);
-        menu_stones.appendChild(document.createElement('li')).appendChild(a);
+        var image = document.createElement('img');
+        switch (element) {
+            case 'clarity':
+                stone = 'afx_clarity_stone_4';
+                break;
+            case 'lunar':
+                stone = 'afx_lunar_stone_4';
+                break
+            case 'prophecy':
+                stone = 'afx_prophecy_stone_4';
+                break
+            case 'life':
+                stone = 'afx_life_stone_4';
+                break
+            case 'quantum':
+                stone = 'afx_quantum_stone_4';
+                break
+            case 'dilithium':
+                stone = 'afx_dilithium_stone_4';
+                break
+            case 'soul':
+                stone = 'afx_soul_stone_4';
+                break
+            case 'terra':
+                stone = 'afx_terra_stone_4';
+                break
+            case 'tachyon':
+                stone = 'afx_tachyon_stone_4';
+                break
+            case 'shell':
+                stone = 'afx_shell_stone_4';
+                break
+        }
+
+        image.setAttribute('src', "../eggboard/assets/stones/" + stone + ".png");
+        var li = document.createElement('li');
+        menu_stones.appendChild(li);
+        li.appendChild(image);
+        li.appendChild(a);
 
     });
 
@@ -234,7 +294,12 @@ function createDropdowns() {
         a.setAttribute('role', "button");
         a.setAttribute("onclick", "getLeaderboard(\'Artifact\',\'" + element + "\')");
         a.text = element.charAt(0).toUpperCase() + element.slice(1);
-        menu_artifacts.appendChild(document.createElement('li')).appendChild(a);
+        var image = document.createElement('img');
+        image.setAttribute('src', "../eggboard/assets/artifacts/" + element + ".png");
+        var li = document.createElement('li');
+        menu_artifacts.appendChild(li);
+        li.appendChild(image);
+        li.appendChild(a);
 
     });
 
@@ -502,7 +567,7 @@ function getMYLeaderboard(eid, personal) {
             //console.log(response, 'after the json parse');
             if (typeof (response.content) != 'string') {
                 response.content = response.content.sort(compareSecondColumn);
-                
+
                 fillPersonalTable(response.content);
             } else {
                 content = response.content;

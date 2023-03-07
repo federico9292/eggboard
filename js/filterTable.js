@@ -117,7 +117,7 @@ function fillTableIngredient(response, name) {
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
     jQuery('#thead').append(
-        '<tr class=\'fs-4\'><th>Pos</th>'
+        '<tr class=\'fs-5\'><th>Pos</th>'
         + '<th>Name</th>'
         + '<th>Stars</th>'
         + '<th>Capacity</th>'
@@ -174,7 +174,7 @@ function fillTableArtifact(response, name) {
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
     jQuery('#thead').append(
-        '<tr class=\'fs-4\'><th>Pos</th>'
+        '<tr class=\'fs-5\'><th>Pos</th>'
         + '<th>Name</th>'
         + '<th>Stars</th>'
         + '<th>Capacity</th>'
@@ -805,11 +805,15 @@ function changeName(firstPart, type, name) {
 }
 
 function addTransparent() {
-    if (jQuery('#transparent-image').length == 0) {
-        var a = document.createElement('img');
-        a.setAttribute('height', '64px');
-        a.setAttribute('id', 'transparent-image');
-        a.setAttribute('src', './assets/ingredients/transparent.webp'); 
-        jQuery('.container-fluid h1')[0].appendChild(a);
+    if (jQuery('#h1')[0].length) {
+        if (jQuery('#transparent-image').length == 0) {
+            var a = document.createElement('img');
+            a.setAttribute('height', '64px');
+            a.setAttribute('id', 'transparent-image');
+            a.setAttribute('src', './assets/ingredients/transparent.webp'); 
+            jQuery('.container-fluid h1')[0].appendChild(a);
+        }
+        
     }
+    
 }

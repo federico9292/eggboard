@@ -103,3 +103,15 @@ div.dropdown-row>a.dropdown-item{
   width: 10em;
 }
 
+
+@media  (min-width: 1024px) {
+  .table-condensed>tbody>tr>td, 
+  .table-condensed>tbody>tr>th, 
+  .table-condensed>tfoot>tr>td, 
+  .table-condensed>tfoot>tr>th, 
+  .table-condensed>thead>tr>td, 
+  .table-condensed>thead>tr>th
+   {
+    font-size: medium!important;
+  }
+}

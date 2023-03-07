@@ -132,7 +132,7 @@ function fillTableIngredient(response, name) {
         var smaller = (value[1].length > 14)? 'font-size:smaller;' : ''; 
         jQuery('#myTable')
             .append('<tr class=\'fs-5\'><td>' + value[0]
-                + '</td><td style=\"'+ smaller +'\">'+ value[1]
+                + '</td><td style=\"vertical-align: middle;'+ smaller +'\">'+ value[1]
                 + '</td><td>' + value[2]
                 + '</td><td>' + value[3]
                 + '</td><td>' + value[4]
@@ -191,7 +191,7 @@ function fillTableArtifact(response, name) {
 
         jQuery('#myTable')
             .append('<tr class=\'fs-5\'><td>' + value[0]
-                + '</td><td style=\"'+ smaller +'\">'+ value[1]
+                + '</td><td style=\"vertical-align: middle;'+ smaller +'\">'+ value[1]
                 + '</td><td>' + value[2]
                 + '</td><td>' + value[3]
                 + '</td><td>' + value[4]
@@ -253,7 +253,7 @@ function fillTableStones(response, name) {
 
         jQuery('#myTable')
             .append('<tr class=\'fs-5\'><td>' + value[0]
-                + '</td><td style=\"'+ smaller +'\">'+ value[1]
+                + '</td><td style=\"vertical-align: middle;'+ smaller +'\">'+ value[1]
                 + '</td><td>' + value[2]
                 + '</td><td>' + value[3]
                 + '</td><td>' + value[4]

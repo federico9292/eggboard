@@ -104,7 +104,7 @@ div.dropdown-row>a.dropdown-item{
 }
 
 
-@media  (min-width: 1024px) {
+@media  (min-width: 768px) {
   .table-condensed>tbody>tr>td, 
   .table-condensed>tbody>tr>th, 
   .table-condensed>tfoot>tr>td, 

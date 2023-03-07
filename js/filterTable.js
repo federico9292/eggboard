@@ -15,7 +15,7 @@ var isTest = false;
 $(document).ready(function () {
 
     isTest ? current_endpoint = window._testEndpoint : current_endpoint = window._prodEndpoint;
-
+    addTransparent();
 
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
@@ -481,6 +481,8 @@ function switchPage(pageName) {
         jQuery('#page')[0].textContent = normalizedName;
         jQuery('.container-fluid h1')[0].textContent = 'Eggboard';
 
+        addTransparent();
+
     }
     else {                                                       //scheda submit EID
         normalizedName = "Submit Ship Log Page";
@@ -504,6 +506,8 @@ function switchPage(pageName) {
         jQuery('#page')[0].textContent = normalizedName;
         jQuery('.container-fluid h1')[0].textContent = 'Eggboard';
 
+        addTransparent();
+
     }
 
 
@@ -512,6 +516,8 @@ function switchPage(pageName) {
         //alert(pageName);
         window._currentPage = pageName;
         //jQuery('#' + otherPage)[0].classList.remove('bg-primary');
+
+        addTransparent();
 
     }
 }
@@ -731,6 +737,7 @@ function showToast(successOrError, content) {
 
 function changeName(firstPart, type, name) {
     var secondPart;
+    addTransparent();
     if (type != null || name != null) {
         name = name.toLowerCase();
         type = type.toLowerCase();
@@ -795,4 +802,11 @@ function changeName(firstPart, type, name) {
         jQuery('.container-fluid h1')[0].textContent = firstPart;
         jQuery('.container-fluid h1')[0].appendChild(img);
     }
+}
+
+function addTransparent() {
+    var a = document.createElement('img');
+    a.setAttribute('height','64px');
+    a.setAttribute('src','./assets/ingredients/transparent.webp');
+    jQuery('.container-fluid h1')[0].appendChild(a);
 }

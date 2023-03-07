@@ -120,7 +120,7 @@ function fillTableIngredient(response, name) {
         '<tr class=\'fs-5\'><th>Pos</th>'
         + '<th>Name</th>'
         + '<th>Stars</th>'
-        + '<th>Capacity</th>'
+        + '<th style=\"padding-right:0px;\">Capacity</th>'
         + '<th>T1</th>'
         + '<th>T2</th>'
         + '<th>T3</th>'
@@ -134,7 +134,7 @@ function fillTableIngredient(response, name) {
             .append('<tr class=\'fs-5\'><td>' + value[0]
                 + '</td><td style=\"vertical-align: middle;'+ smaller +'\">'+ value[1]
                 + '</td><td>' + value[2]
-                + '</td><td>' + value[3]
+                + '</td><td style=\"padding-right:0px;\">' + value[3]
                 + '</td><td>' + value[4]
                 + '</td><td>' + value[5]
                 + '</td><td>' + value[6]
@@ -178,7 +178,7 @@ function fillTableArtifact(response, name) {
         '<tr class=\'fs-5\'><th>Pos</th>'
         + '<th>Name</th>'
         + '<th>Stars</th>'
-        + '<th>Capacity</th>'
+        + '<th style=\"padding-right:0px;\">Capacity</th>'
         + '<th>T1</th>'
         + '<th>T2</th>'
         + '<th>T3</th>'
@@ -193,7 +193,7 @@ function fillTableArtifact(response, name) {
             .append('<tr class=\'fs-5\'><td>' + value[0]
                 + '</td><td style=\"vertical-align: middle;'+ smaller +'\">'+ value[1]
                 + '</td><td>' + value[2]
-                + '</td><td>' + value[3]
+                + '</td><td style=\"padding-right:0px;\">' + value[3]
                 + '</td><td>' + value[4]
                 + '</td><td>' + value[5]
                 + '</td><td>' + value[6]
@@ -239,7 +239,7 @@ function fillTableStones(response, name) {
         '<tr class=\'fs-5\'><th>Pos</th>'
         + '<th>Name</th>'
         + '<th>Stars</th>'
-        + '<th>Capacity</th>'
+        + '<th style=\"padding-right:0px;\">Capacity</th>'
         + '<th>T1</th>'
         + '<th>T2</th>'
         + '<th>T3</th>'
@@ -255,7 +255,7 @@ function fillTableStones(response, name) {
             .append('<tr class=\'fs-5\'><td>' + value[0]
                 + '</td><td style=\"vertical-align: middle;'+ smaller +'\">'+ value[1]
                 + '</td><td>' + value[2]
-                + '</td><td>' + value[3]
+                + '</td><td style=\"padding-right:0px;\">' + value[3]
                 + '</td><td>' + value[4]
                 + '</td><td>' + value[5]
                 + '</td><td>' + value[6]

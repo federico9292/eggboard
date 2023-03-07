@@ -233,7 +233,7 @@ function fillTableStones(response, name) {
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
     response = JSON.parse(response);
     jQuery('#thead').append(
-        '<tr class=\'fs-4\'><th>Pos</th>'
+        '<tr class=\'fs-5\'><th>Pos</th>'
         + '<th>Name</th>'
         + '<th>Stars</th>'
         + '<th>Capacity</th>'
@@ -547,8 +547,8 @@ function fillPersonalTable(response) {
     jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
 
     jQuery('#thead_personal').append(
-        '<tr class=\'fs-4\'><th>Item Name</th>'
-        + '<th>Position</th>'
+        '<tr class=\'fs-5\'><th>Item</th>'
+        + '<th>Pos</th>'
         + '<th>Stars</th>'
         + '<th>Capacity</th>'
         + '<th>T1</th>'

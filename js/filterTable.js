@@ -805,8 +805,11 @@ function changeName(firstPart, type, name) {
 }
 
 function addTransparent() {
-    var a = document.createElement('img');
-    a.setAttribute('height','64px');
-    a.setAttribute('src','./assets/ingredients/transparent.webp');
-    jQuery('.container-fluid h1')[0].appendChild(a);
+    if (jQuery('#transparent-image').length == 0) {
+        var a = document.createElement('img');
+        a.setAttribute('height', '64px');
+        a.setAttribute('id', 'transparent-image');
+        a.setAttribute('src', './assets/ingredients/transparent.webp'); 
+        jQuery('.container-fluid h1')[0].appendChild(a);
+    }
 }

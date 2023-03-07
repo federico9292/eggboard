@@ -449,7 +449,6 @@ function switchPage(pageName) {
 
     var normalizedName;
 
-    var otherPage;
     if (pageName == 'globalPage') {
         //otherPage = 'personalPage';
         normalizedName = "Global Leaderboard Page"

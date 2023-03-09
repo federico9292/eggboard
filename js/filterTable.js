@@ -73,6 +73,9 @@ function toggleCheckbox() {
 }
 
 function getLeaderboard(type, name) {
+    if (this._currentPage == 'personalPage') {
+        switchPage('globalPage');
+    }
     const http = new XMLHttpRequest()
     if (window._current_item && (window._current_item.toLowerCase() != type.toLowerCase() || window._current_name.toLowerCase() != name.toLowerCase())) {
         window._rows = 10;
@@ -604,10 +607,13 @@ function fillPersonalTable(response) {
     );
     var paddingMetronome = '';
     jQuery.each(response, function (_key, value) {
-        (value[0] == 'metronome') ? paddingMetronome = 'style=\"padding-left: inherit;padding-right: inherit;\"' : paddingMetronome = '';
-
+        var paddingMetronome = "";
+        var style = "cursor:pointer;";
+        if(value[0] == 'metronome') {
+            style += "padding-left: inherit;padding-right: inherit;";
+        } 
         jQuery('#myPersonalTable')
-            .append('<tr class=\'fs-5\'><td ' + paddingMetronome + '> <img src="./assets/' + reverseSuperMapName(value[0]) + '/' + superMapName(value[0]) + '.webp")" height="32px" /> ' + value[0].charAt(0).toUpperCase() + value[0].slice(1) + '</td><td>' + value[1]
+            .append('<tr class=\'fs-5\'><td> <img style=\"' + style + '\" src="./assets/' + reverseSuperMapName(value[0]) + '/' + superMapName(value[0]) + '.webp")" height="32px" onclick=getLeaderboard(\'' + reverseSuperMapName(value[0]).charAt(0).toUpperCase() + reverseSuperMapName(value[0]).substring(0, reverseSuperMapName(value[0]).length - 1).substring(1) + '\',\'' + value[0] + '\')>' + value[0].charAt(0).toUpperCase() + value[0].slice(1) + '</td><td>' + value[1]
                 + '</td><td>' + value[2]
                 + '</td><td>' + value[3]
                 + '</td><td>' + value[4]
@@ -1003,7 +1009,7 @@ function highlightDropdownItem(name) {
 
     for (let index = 0; index < items.length; index++) {
         const element = items[index];
-        if(element.textContent == " "+name) {
+        if (element.textContent == " " + name) {
             element.style.backgroundColor = "lightgray";
             element.style.fontWeight = "bolder";
             element.style.borderRadius = "7px";

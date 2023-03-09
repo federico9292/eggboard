@@ -566,7 +566,7 @@ function fillPersonalTable(response) {
                 + '</td><td>' + value[4]
                 + '</td><td>' + value[5]
                 + '</td><td>' + value[6]
-                + '</td><td>' + value[7]
+                + '</td><td>' + ((value[7] == 'X')? '' : value[7])
                 + '</td><td>' + value[8]
                 + '</td></tr>');
     });

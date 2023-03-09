@@ -45,7 +45,7 @@ $(document).ready(function () {
 const options = {
   attributes: true
 }
-
+ 
 function callback(mutationList, observer) {
   mutationList.forEach(function(mutation) {
     if (mutation.type === 'attributes' && mutation.attributeName === 'class') {

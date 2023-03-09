@@ -58,13 +58,13 @@ $(document).ready(function () {
         })
     }
     const observerA = new MutationObserver(callback)
-    observer.observe(dropdownArti, options);
+    observerA.observe(dropdownArti, options);
     
     const observerI = new MutationObserver(callback)
-    observer.observe(dropdownIngr, options);
+    observerI.observe(dropdownIngr, options);
     
     const observerS = new MutationObserver(callback)
-    observer.observe(dropdownSton, options);
+    observerS.observe(dropdownSton, options);
     
 })
 

@@ -555,11 +555,12 @@ function fillPersonalTable(response) {
         + '<th>Total</th>'
         + '</tr>'
     );
-
+    var paddingMetronome = '';
     jQuery.each(response, function (_key, value) {
-        jQuery('#myPersonalTable')
-            .append('<tr class=\'fs-5\'><td>' + value[0].charAt(0).toUpperCase() + value[0].slice(1)
-                + '</td><td>' + value[1]
+        (value[0] == 'metronome')? paddingMetronome = 'style=\"padding-left: inherit;padding-right: inherit;\"' : paddingMetronome = '';
+        
+        jQuery('#myPersonalTable')       
+            .append('<tr class=\'fs-5\'><td ' + paddingMetronome + '> <img src="./assets/'+reverseSuperMapName(value[0]) + '/' + superMapName(value[0]) +'.webp")" height="30px" /> ' + value[0].charAt(0).toUpperCase() + value[0].slice(1) + '</td><td>' + value[1]
                 + '</td><td>' + value[2]
                 + '</td><td>' + value[3]
                 + '</td><td>' + value[4]
@@ -877,6 +878,70 @@ function mapName(type, name) {
 
     }
     return secondPart;
+}
+
+function superMapName(name) {
+    var result;
+        switch (name) {
+            case 'gold':
+                result = 'afx_gold_meteorite_3';
+                break;
+            case 'titanium':
+                result = 'afx_solar_titanium_3';
+                break;
+            case 'tau':
+                result = 'afx_tau_ceti_geode_3';
+                break;
+            case 'clarity':
+                result = 'afx_clarity_stone_4';
+                break;
+            case 'lunar':
+                result = 'afx_lunar_stone_4';
+                break
+            case 'prophecy':
+                result = 'afx_prophecy_stone_4';
+                break
+            case 'life':
+                result = 'afx_life_stone_4';
+                break
+            case 'quantum':
+                result = 'afx_quantum_stone_4';
+                break
+            case 'dilithium':
+                result = 'afx_dilithium_stone_4';
+                break
+            case 'soul':
+                result = 'afx_soul_stone_4';
+                break
+            case 'terra':
+                result = 'afx_terra_stone_4';
+                break
+            case 'tachyon':
+                result = 'afx_tachyon_stone_4';
+                break
+            case 'shell':
+                result = 'afx_shell_stone_4';
+                break
+            default :
+            result = name;
+        }
+        return result;
+
+}
+
+function reverseSuperMapName(name) {
+    var result;
+    switch (name) {
+        case 'gold': case 'gold': case 'titanium': case'tau':
+            result = 'ingredients';
+            break;
+        case 'titanium' : case 'tau' : case 'clarity' : case 'lunar' : case 'prophecy' : case 'life' : case 'quantum' : case 'dilithium' : case 'soul' : case 'terra' : case 'tachyon' : case 'shell' :
+            result = 'stones';
+            break
+        default :
+        result = 'artifacts';
+    }
+    return result;
 }
 
 function activateBackgroundGrey() {

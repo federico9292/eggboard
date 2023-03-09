@@ -134,12 +134,20 @@ function fillTableIngredient(response, name) {
 
     ingredientDropdown.textContent = name + ' ';
     ingredientDropdown.appendChild(span1);
+    ingredientDropdown.classList.remove('btn-primary');
+    ingredientDropdown.classList.add('btn-info');
 
     stoneDropdown.textContent = 'Stones ';
     stoneDropdown.appendChild(span2);
+    stoneDropdown.classList.remove('btn-info');
+    stoneDropdown.classList.add('btn-primary');
+
 
     artifactsDropdown.textContent = 'Artifacts ';
     artifactsDropdown.appendChild(span3);
+    artifactsDropdown.classList.remove('btn-info');
+    artifactsDropdown.classList.add('btn-primary');
+
 
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
@@ -186,12 +194,21 @@ function fillTableArtifact(response, name) {
 
     ingredientDropdown.textContent = 'Ingredients ';
     ingredientDropdown.appendChild(span);
+    ingredientDropdown.classList.add('btn-primary');
+    ingredientDropdown.classList.remove('btn-info');
+
 
     stoneDropdown.textContent = 'Stones ';
     stoneDropdown.appendChild(span2);
+    stoneDropdown.classList.add('btn-primary');
+    stoneDropdown.classList.remove('btn-info');
+
+
 
     artifactsDropdown.textContent = name + ' ';
     artifactsDropdown.appendChild(span3);
+    artifactsDropdown.classList.add('btn-info');
+    artifactsDropdown.classList.remove('btn-primary');
 
     window._globalPageName = 'Eggboard | Artifact | ' + name;
 
@@ -253,12 +270,20 @@ function fillTableStones(response, name) {
 
     ingredientDropdown.textContent = 'Ingredients';
     ingredientDropdown.appendChild(span1);
+    ingredientDropdown.classList.add('btn-primary');
+    ingredientDropdown.classList.remove('btn-info');
+
 
     stoneDropdown.textContent = name + ' ';
     stoneDropdown.appendChild(span2);
+    stoneDropdown.classList.add('btn-info');
+    stoneDropdown.classList.remove('btn-primary');
+
 
     artifactsDropdown.textContent = 'Artifacts ';
     artifactsDropdown.appendChild(span3);
+    artifactsDropdown.classList.remove('btn-info');
+    artifactsDropdown.classList.add('btn-primary');
 
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)

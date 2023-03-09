@@ -104,6 +104,13 @@ div.dropdown-row>a.dropdown-item{
 }
 
 
+@media (min-width:320px) {
+  iframe {
+  width: 90%;
+  height: 30rem;
+  }
+}
+
 @media  (min-width: 768px) {
   .table-condensed>tbody>tr>td, 
   .table-condensed>tbody>tr>th, 
@@ -114,6 +121,11 @@ div.dropdown-row>a.dropdown-item{
    {
     font-size: medium!important;
   }
+  iframe {
+    width: 90%;
+    height: 40rem;
+    }
+  
 }
 
 .dropdown-row.fs-3 {

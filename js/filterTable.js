@@ -40,23 +40,22 @@ $(document).ready(function () {
 
     createDropdowns();
 
-    var btn =jQuery('#dropdown_menu_Artifacts_multi')[0];
-
-const options = {
-  attributes: true
-}
- 
-function callback(mutationList, observer) {
-  mutationList.forEach(function(mutation) {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-        if(jQuery('.spinner-border.align-items-center.d-flex.justify-content-center').length == '0'){
-            deactivateBackgroundGrey();
-        }
+    var btn = jQuery('#dropdown_menu_Artifacts_multi')[0];
+    const options = {
+        attributes: true
     }
-  })
-}
-const observer = new MutationObserver(callback)
-observer.observe(btn, options)
+
+    function callback(mutationList, observer) {
+        mutationList.forEach(function (mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                if (jQuery('.spinner-border.align-items-center.d-flex.justify-content-center').length == '0') {
+                    deactivateBackgroundGrey();
+                }
+            }
+        })
+    }
+    const observer = new MutationObserver(callback)
+    observer.observe(btn, options)
 })
 
 function toggleCheckbox() {

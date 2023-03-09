@@ -115,3 +115,12 @@ div.dropdown-row>a.dropdown-item{
     font-size: medium!important;
   }
 }
+
+.dropdown-row.fs-3 {
+  padding-left:0.4rem;
+  padding-top:0.4rem;
+  cursor: pointer;  
+}
+a.dropdown-item.fs-4 {
+  text-decoration:none;
+}

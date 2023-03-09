@@ -66,39 +66,48 @@
 
 
   <div id="Global">
+
     <div class="flex-container wrap"
       style="display:flex;align-content: stretch;align-items: center;flex-wrap: wrap;justify-content: space-around;">
+            <!-- ARTIFACT 7 ROWS 3cols -->
+            <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 0.25rem;padding-top: 0.25rem;">
+              <button class="btn btn-primary btn-lg fs-3" type="button" id="artifactDropdown" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Artifacts <span class="caret"></span>
+              </button>
+              <div id="dropdown_menu_Artifacts_multi" class="dropdown-menu dropdown-multicol"
+                aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-row fs-3">
+      
+                </div>
+                <div class="dropdown-row fs-3">
+      
+                </div>
+                <div class="dropdown-row fs-3">
+      
+                </div>
+                <div class="dropdown-row fs-3">
+      
+                </div>
+                <div class="dropdown-row fs-3">
+      
+                </div>
+                <div class="dropdown-row fs-3">
+      
+                </div>
+                <div class="dropdown-row fs-3">
+      
+                </div>
+              </div>
+            </div>
+      <!-- STONES 5 ROWS 2cols  -->
       <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 0.25rem;padding-top: 0.25rem;">
-        <button id="ingredientDropdown" class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false"> Ingredients <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" id="dropdown_menu_Ingredients">
-        </ul>
-      </div>
-
-      <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 0.25rem;padding-top: 0.25rem;">
-        <button id="stoneDropdown" class="btn btn-primary btn-lg fs-3" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false"> Stones <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" id="dropdown_menu_Stones">
-        </ul>
-      </div>
-
-
-      <!-- ROWS -->
-      <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 0.25rem;padding-top: 0.25rem;">
-        <button class="btn btn-primary btn-lg fs-3" type="button" id="artifactDropdown" data-bs-toggle="dropdown"
+        <button class="btn btn-primary btn-lg fs-3" type="button" id="stoneDropdown" data-bs-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Artifacts <span class="caret"></span>
+          Stones <span class="caret"></span>
         </button>
-        <div id="dropdown_menu_Artifacts_multi" class="dropdown-menu dropdown-multicol"
+        <div id="dropdown_menu_Stones_multi" class="dropdown-menu dropdown-multicol"
           aria-labelledby="dropdownMenuButton">
-          <div class="dropdown-row fs-3">
-
-          </div>
-          <div class="dropdown-row fs-3">
-
-          </div>
           <div class="dropdown-row fs-3">
 
           </div>
@@ -116,6 +125,29 @@
           </div>
         </div>
       </div>
+
+            
+      <!-- INGREDIENTS 3 ROWS 1col  -->
+      <div class="dropdown" style="padding-right: 0.5rem;padding-bottom: 0.25rem;padding-top: 0.25rem;">
+        <button class="btn btn-primary btn-lg fs-3" type="button" id="ingredientDropdown" data-bs-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Ingredients <span class="caret"></span>
+        </button>
+        <div id="dropdown_menu_Ingredients_multi" class="dropdown-menu dropdown-multicol"
+          aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-row fs-3">
+
+          </div>
+          <div class="dropdown-row fs-3">
+
+          </div>
+          <div class="dropdown-row fs-3">
+
+          </div>
+        </div>
+      </div>
+
+
 
 
       <ul class="list-group" style="padding-top: 0.5rem;padding-bottom: 0.5rem;">
@@ -137,11 +169,9 @@
       </div>
 
     </div>
-    <br>
     <input class="form-control fs-4 hidden" id="myInput" type="text" placeholder="Type something to search the table">
 
     <div id="section2" style="overflow: auto;">
-      <br>
 
       <table class="table table-group-divider  table-condensed">
         <thead id="thead">
@@ -168,8 +198,8 @@
         <a href="#" type="submit" class="btn btn-primary fs-3 padding-top-1" onclick="getPersonalLeaderboard(this)">View
           leaderboards</a>
       </div>
- 
-     </form>
+
+    </form>
     <p></p>
     <div style="overflow: auto;">
       <table class="table table-group-divider  table-condensed">
@@ -187,8 +217,9 @@
   <div id="Submit" class="hidden">
 
     <p></p>
-    <iframe src="https://replit.com/@Brosssh/Submit-Ships-Loot?embed=true" width="600" height="400"  frameborder="0"></iframe>
-    
+    <iframe src="https://replit.com/@Brosssh/Submit-Ships-Loot?embed=true" width="600" height="400"
+      frameborder="0"></iframe>
+
     <form>
       <div class="form-group fs-3 p-3 hidden">
         <label class="fw-normal" for="EIDSubmit">Type your Egg,Inc ID to submit your ship log</label>

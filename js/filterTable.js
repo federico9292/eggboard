@@ -39,6 +39,24 @@ $(document).ready(function () {
     }
 
     createDropdowns();
+
+    var btn =jQuery('#dropdown_menu_Artifacts_multi')[0];
+
+const options = {
+  attributes: true
+}
+
+function callback(mutationList, observer) {
+  mutationList.forEach(function(mutation) {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        if(jQuery('.spinner-border.align-items-center.d-flex.justify-content-center').length == '0'){
+            deactivateBackgroundGrey();
+        }
+    }
+  })
+}
+const observer = new MutationObserver(callback)
+observer.observe(btn, options)
 })
 
 function toggleCheckbox() {
@@ -70,7 +88,7 @@ function getLeaderboard(type, name) {
 
     http.onload = () => {
         jQuery('.spinner-border')[0].remove();
-        jQuery('.backgroundBlur')[0].style = '';
+        deactivateBackgroundGrey();
 
         displayButtonMore();
         displaySearch();
@@ -553,7 +571,7 @@ function submitEID(e) {
     http.onload = function () {
         //getMYLeaderboard(eid,true);           //scheda submit EID
         jQuery('.spinner-border')[0].remove();  //scheda submit EID
-        jQuery('.backgroundBlur')[0].style = '';  //scheda submit EID
+        deactivateBackgroundGrey();  //scheda submit EID
         const toastElList = document.querySelectorAll('.toast')
         const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl))
         var content = http.responseText;
@@ -612,7 +630,7 @@ function getMYLeaderboard(eid, personal) {
     http.onload = function () {
 
         jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
-        jQuery('.backgroundBlur')[0].style = '';
+        deactivateBackgroundGrey();
         //console.log(http.responseText, 'before the json parse');
         var content = http.responseText;
         var successOrError;
@@ -641,7 +659,7 @@ function getMYLeaderboard(eid, personal) {
         console.log("the getPersonalLeaderboard call got an error");
         console.log(event.currentTarget.responseText);
         jQuery('.spinner-border')[0].remove();// .style='width:0rem; height: 0rem; visibility: hidden;';
-        jQuery('.backgroundBlur')[0].style = '';
+        deactivateBackgroundGrey();
         jQuery('#thead_personal tr').remove(); //to clear the columns;
         jQuery('#myPersonalTable tr').remove(); //To clear the rows (pointed by @nunners)
     }
@@ -829,4 +847,8 @@ function mapName(type, name) {
 
 function activateBackgroundGrey() {
     jQuery('.backgroundBlur')[0].style = 'position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+}
+
+function deactivateBackgroundGrey() {
+    jQuery('.backgroundBlur')[0].style = '';
 }

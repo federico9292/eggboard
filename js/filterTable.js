@@ -40,7 +40,10 @@ $(document).ready(function () {
 
     createDropdowns();
 
-    var btn = jQuery('#dropdown_menu_Artifacts_multi')[0];
+    var dropdownArti = jQuery('#dropdown_menu_Artifacts_multi')[0];
+    var dropdownSton = jQuery('#dropdown_menu_Ingredients_multi')[0];
+    var dropdownIngr = jQuery('#dropdown_menu_Stones_multi')[0];
+
     const options = {
         attributes: true
     }
@@ -54,8 +57,15 @@ $(document).ready(function () {
             }
         })
     }
-    const observer = new MutationObserver(callback)
-    observer.observe(btn, options)
+    const observerA = new MutationObserver(callback)
+    observer.observe(dropdownArti, options);
+    
+    const observerI = new MutationObserver(callback)
+    observer.observe(dropdownIngr, options);
+    
+    const observerS = new MutationObserver(callback)
+    observer.observe(dropdownSton, options);
+    
 })
 
 function toggleCheckbox() {

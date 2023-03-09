@@ -560,7 +560,7 @@ function fillPersonalTable(response) {
         (value[0] == 'metronome')? paddingMetronome = 'style=\"padding-left: inherit;padding-right: inherit;\"' : paddingMetronome = '';
         
         jQuery('#myPersonalTable')       
-            .append('<tr class=\'fs-5\'><td ' + paddingMetronome + '> <img src="./assets/'+reverseSuperMapName(value[0]) + '/' + superMapName(value[0]) +'.webp")" height="30px" /> ' + value[0].charAt(0).toUpperCase() + value[0].slice(1) + '</td><td>' + value[1]
+            .append('<tr class=\'fs-5\'><td ' + paddingMetronome + '> <img src="./assets/'+reverseSuperMapName(value[0]) + '/' + superMapName(value[0]) +'.webp")" height="32px" /> ' + value[0].charAt(0).toUpperCase() + value[0].slice(1) + '</td><td>' + value[1]
                 + '</td><td>' + value[2]
                 + '</td><td>' + value[3]
                 + '</td><td>' + value[4]

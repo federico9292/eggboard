@@ -116,6 +116,8 @@ function getLeaderboard(type, name) {
 
 function fillTableIngredient(response, name) {
     //console.log(response);
+
+    highlightDropdownItem(name);
     var span1 = document.createElement('span');
     span1.classList.add('caret');
     var span2 = document.createElement('span');
@@ -134,19 +136,19 @@ function fillTableIngredient(response, name) {
 
     ingredientDropdown.textContent = name + ' ';
     ingredientDropdown.appendChild(span1);
-    ingredientDropdown.classList.remove('btn-primary');
-    ingredientDropdown.classList.add('btn-info');
+    //ingredientDropdown.classList.remove('btn-primary');
+    //ingredientDropdown.classList.add('btn-info');
 
     stoneDropdown.textContent = 'Stones ';
     stoneDropdown.appendChild(span2);
-    stoneDropdown.classList.remove('btn-info');
-    stoneDropdown.classList.add('btn-primary');
+    //stoneDropdown.classList.remove('btn-info');
+    //stoneDropdown.classList.add('btn-primary');
 
 
     artifactsDropdown.textContent = 'Artifacts ';
     artifactsDropdown.appendChild(span3);
-    artifactsDropdown.classList.remove('btn-info');
-    artifactsDropdown.classList.add('btn-primary');
+    //artifactsDropdown.classList.remove('btn-info');
+    //artifactsDropdown.classList.add('btn-primary');
 
 
     jQuery('#thead tr').remove(); //to clear the columns;
@@ -196,6 +198,7 @@ function fillTableIngredient(response, name) {
 
 function fillTableArtifact(response, name) {
     //console.log(response);
+    highlightDropdownItem(name);
     var span = document.createElement('span');
     span.classList.add('caret');
     var span2 = document.createElement('span');
@@ -209,21 +212,21 @@ function fillTableArtifact(response, name) {
 
     ingredientDropdown.textContent = 'Ingredients ';
     ingredientDropdown.appendChild(span);
-    ingredientDropdown.classList.add('btn-primary');
-    ingredientDropdown.classList.remove('btn-info');
+    //ingredientDropdown.classList.add('btn-primary');
+    //ingredientDropdown.classList.remove('btn-info');
 
 
     stoneDropdown.textContent = 'Stones ';
     stoneDropdown.appendChild(span2);
-    stoneDropdown.classList.add('btn-primary');
-    stoneDropdown.classList.remove('btn-info');
+    //stoneDropdown.classList.add('btn-primary');
+    //stoneDropdown.classList.remove('btn-info');
 
 
 
     artifactsDropdown.textContent = name + ' ';
     artifactsDropdown.appendChild(span3);
-    artifactsDropdown.classList.add('btn-info');
-    artifactsDropdown.classList.remove('btn-primary');
+    //artifactsDropdown.classList.add('btn-info');
+    //artifactsDropdown.classList.remove('btn-primary');
 
     window._globalPageName = 'Eggboard | Artifact | ' + name;
 
@@ -279,6 +282,7 @@ function fillTableArtifact(response, name) {
 
 function fillTableStones(response, name) {
     //console.log(response);
+    highlightDropdownItem(name);
     var span1 = document.createElement('span');
     span1.classList.add('caret');
     var span2 = document.createElement('span');
@@ -299,20 +303,20 @@ function fillTableStones(response, name) {
 
     ingredientDropdown.textContent = 'Ingredients';
     ingredientDropdown.appendChild(span1);
-    ingredientDropdown.classList.add('btn-primary');
-    ingredientDropdown.classList.remove('btn-info');
+    //ingredientDropdown.classList.add('btn-primary');
+    //ingredientDropdown.classList.remove('btn-info');
 
 
     stoneDropdown.textContent = name + ' ';
     stoneDropdown.appendChild(span2);
-    stoneDropdown.classList.add('btn-info');
-    stoneDropdown.classList.remove('btn-primary');
+    //stoneDropdown.classList.add('btn-info');
+    //stoneDropdown.classList.remove('btn-primary');
 
 
     artifactsDropdown.textContent = 'Artifacts ';
     artifactsDropdown.appendChild(span3);
-    artifactsDropdown.classList.remove('btn-info');
-    artifactsDropdown.classList.add('btn-primary');
+    //artifactsDropdown.classList.remove('btn-info');
+    //artifactsDropdown.classList.add('btn-primary');
 
     jQuery('#thead tr').remove(); //to clear the columns;
     jQuery('#myTable tr').remove(); //To clear the rows (pointed by @nunners)
@@ -993,4 +997,20 @@ function activateBackgroundGrey() {
 
 function deactivateBackgroundGrey() {
     jQuery('.backgroundBlur')[0].style = '';
+}
+function highlightDropdownItem(name) {
+    var items = jQuery('.dropdown-item.fs-4');
+
+    for (let index = 0; index < items.length; index++) {
+        const element = items[index];
+        if(element.textContent == " "+name) {
+            element.style.backgroundColor = "lightgray";
+            element.style.fontWeight = "bolder";
+            element.style.borderRadius = "7px";
+            element.style.color = "black";
+        }
+        else {
+            element.style = '';
+        }
+    }
 }

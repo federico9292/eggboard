@@ -66,7 +66,7 @@ function getLeaderboard(type, name) {
     spinnerBorder.classList.add("d-flex");
     spinnerBorder.classList.add("justify-content-center");
 
-    jQuery('.backgroundBlur')[0].style = 'position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+    activateBackgroundGrey();
 
     http.onload = () => {
         jQuery('.spinner-border')[0].remove();
@@ -548,7 +548,7 @@ function submitEID(e) {
     spinnerBorder.classList.add("justify-content-center");
 
 
-    jQuery('.backgroundBlur')[0].style = 'position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+    activateBackgroundGrey();
 
     http.onload = function () {
         //getMYLeaderboard(eid,true);           //scheda submit EID
@@ -606,7 +606,7 @@ function getMYLeaderboard(eid, personal) {
     spinnerBorder.classList.add("align-items-center");
     spinnerBorder.classList.add("d-flex");
     spinnerBorder.classList.add("justify-content-center");
-    jQuery('.backgroundBlur')[0].style = 'position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
+    activateBackgroundGrey();
 
     //}                     //scheda submit EID
     http.onload = function () {
@@ -825,4 +825,8 @@ function mapName(type, name) {
 
     }
     return secondPart;
+}
+
+function activateBackgroundGrey() {
+    jQuery('.backgroundBlur')[0].style = 'position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: #555555;opacity: 0.5;z-index:1000;" ';
 }

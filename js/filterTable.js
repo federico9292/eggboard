@@ -59,13 +59,13 @@ $(document).ready(function () {
     }
     const observerA = new MutationObserver(callback)
     observerA.observe(dropdownArti, options);
-    
+
     const observerI = new MutationObserver(callback)
     observerI.observe(dropdownIngr, options);
-    
+
     const observerS = new MutationObserver(callback)
     observerS.observe(dropdownSton, options);
-    
+
 })
 
 function toggleCheckbox() {
@@ -166,8 +166,23 @@ function fillTableIngredient(response, name) {
 
     jQuery.each(response.content, function (_key, value) {
         var smaller = (value[1].length > 14) ? 'font-size:smaller;' : '';
+        var style = "vertical-align: middle; ";
+
+        switch (value[0]) {
+            case "1":
+                style += 'background-color: gold; font-palette: dark; color: black; font-weight: bolder;';
+                break;
+            case "2":
+                style += 'background-color: lightgrey; font-palette: dark; color: black;';
+                break;
+            case "3":
+                style += 'background-color: rgb(205,88,50); font-palette: dark; color: black;';
+                break;
+            default:
+                break;
+        }
         jQuery('#myTable')
-            .append('<tr class=\'fs-5\'><td>' + value[0]
+            .append('<tr style=\"' + style + ';\" class=\'fs-5\'><td >' + value[0]
                 + '</td><td style=\"vertical-align: middle;' + smaller + '\">' + value[1]
                 + '</td><td>' + value[2]
                 + '</td><td style=\"padding-right:0px;\">' + value[3]
@@ -233,10 +248,24 @@ function fillTableArtifact(response, name) {
 
     jQuery.each(response.content, function (_key, value) {
         var smaller = (value[1].length > 14) ? 'font-size:smaller;' : '';
+        var style = "vertical-align: middle; ";
 
+        switch (value[0]) {
+            case "1":
+                style += 'background-color: gold; font-palette: dark; color: black; font-weight: bolder;';
+                break;
+            case "2":
+                style += 'background-color: lightgrey; font-palette: dark; color: black;';
+                break;
+            case "3":
+                style += 'background-color: rgb(205,88,50); font-palette: dark; color: black;';
+                break;
+            default:
+                break;
+        }
         jQuery('#myTable')
-            .append('<tr class=\'fs-5\'><td>' + value[0]
-                + '</td><td style=\"vertical-align: middle;' + smaller + '\">' + value[1]
+            .append('<tr style=\"' + style + ';\" class=\'fs-5\'><td >' + value[0]
+                + '</td><td style=\"' + smaller + ';\">' + value[1]
                 + '</td><td>' + value[2]
                 + '</td><td style=\"padding-right:0px;\">' + value[3]
                 + '</td><td>' + value[4]
@@ -303,9 +332,23 @@ function fillTableStones(response, name) {
 
     jQuery.each(response.content, function (_key, value) {
         var smaller = (value[1].length > 14) ? 'font-size:smaller;' : '';
+        var style = "vertical-align: middle; ";
 
+        switch (value[0]) {
+            case "1":
+                style += 'background-color: gold; font-palette: dark; color: black; font-weight: bolder;';
+                break;
+            case "2":
+                style += 'background-color: lightgrey; font-palette: dark; color: black;';
+                break;
+            case "3":
+                style += 'background-color: rgb(205,88,50); font-palette: dark; color: black;';
+                break;
+            default:
+                break;
+        }
         jQuery('#myTable')
-            .append('<tr class=\'fs-5\'><td>' + value[0]
+            .append('<tr style=\"' + style + ';\" class=\'fs-5\'><td >' + value[0]
                 + '</td><td style=\"vertical-align: middle;' + smaller + '\">' + value[1]
                 + '</td><td>' + value[2]
                 + '</td><td style=\"padding-right:0px;\">' + value[3]
@@ -557,16 +600,16 @@ function fillPersonalTable(response) {
     );
     var paddingMetronome = '';
     jQuery.each(response, function (_key, value) {
-        (value[0] == 'metronome')? paddingMetronome = 'style=\"padding-left: inherit;padding-right: inherit;\"' : paddingMetronome = '';
-        
-        jQuery('#myPersonalTable')       
-            .append('<tr class=\'fs-5\'><td ' + paddingMetronome + '> <img src="./assets/'+reverseSuperMapName(value[0]) + '/' + superMapName(value[0]) +'.webp")" height="32px" /> ' + value[0].charAt(0).toUpperCase() + value[0].slice(1) + '</td><td>' + value[1]
+        (value[0] == 'metronome') ? paddingMetronome = 'style=\"padding-left: inherit;padding-right: inherit;\"' : paddingMetronome = '';
+
+        jQuery('#myPersonalTable')
+            .append('<tr class=\'fs-5\'><td ' + paddingMetronome + '> <img src="./assets/' + reverseSuperMapName(value[0]) + '/' + superMapName(value[0]) + '.webp")" height="32px" /> ' + value[0].charAt(0).toUpperCase() + value[0].slice(1) + '</td><td>' + value[1]
                 + '</td><td>' + value[2]
                 + '</td><td>' + value[3]
                 + '</td><td>' + value[4]
                 + '</td><td>' + value[5]
                 + '</td><td>' + value[6]
-                + '</td><td>' + ((value[7] == 'X')? '' : value[7])
+                + '</td><td>' + ((value[7] == 'X') ? '' : value[7])
                 + '</td><td>' + value[8]
                 + '</td></tr>');
     });
@@ -882,64 +925,64 @@ function mapName(type, name) {
 
 function superMapName(name) {
     var result;
-        switch (name) {
-            case 'gold':
-                result = 'afx_gold_meteorite_3';
-                break;
-            case 'titanium':
-                result = 'afx_solar_titanium_3';
-                break;
-            case 'tau':
-                result = 'afx_tau_ceti_geode_3';
-                break;
-            case 'clarity':
-                result = 'afx_clarity_stone_4';
-                break;
-            case 'lunar':
-                result = 'afx_lunar_stone_4';
-                break
-            case 'prophecy':
-                result = 'afx_prophecy_stone_4';
-                break
-            case 'life':
-                result = 'afx_life_stone_4';
-                break
-            case 'quantum':
-                result = 'afx_quantum_stone_4';
-                break
-            case 'dilithium':
-                result = 'afx_dilithium_stone_4';
-                break
-            case 'soul':
-                result = 'afx_soul_stone_4';
-                break
-            case 'terra':
-                result = 'afx_terra_stone_4';
-                break
-            case 'tachyon':
-                result = 'afx_tachyon_stone_4';
-                break
-            case 'shell':
-                result = 'afx_shell_stone_4';
-                break
-            default :
+    switch (name) {
+        case 'gold':
+            result = 'afx_gold_meteorite_3';
+            break;
+        case 'titanium':
+            result = 'afx_solar_titanium_3';
+            break;
+        case 'tau':
+            result = 'afx_tau_ceti_geode_3';
+            break;
+        case 'clarity':
+            result = 'afx_clarity_stone_4';
+            break;
+        case 'lunar':
+            result = 'afx_lunar_stone_4';
+            break
+        case 'prophecy':
+            result = 'afx_prophecy_stone_4';
+            break
+        case 'life':
+            result = 'afx_life_stone_4';
+            break
+        case 'quantum':
+            result = 'afx_quantum_stone_4';
+            break
+        case 'dilithium':
+            result = 'afx_dilithium_stone_4';
+            break
+        case 'soul':
+            result = 'afx_soul_stone_4';
+            break
+        case 'terra':
+            result = 'afx_terra_stone_4';
+            break
+        case 'tachyon':
+            result = 'afx_tachyon_stone_4';
+            break
+        case 'shell':
+            result = 'afx_shell_stone_4';
+            break
+        default:
             result = name;
-        }
-        return result;
+    }
+    return result;
 
 }
 
 function reverseSuperMapName(name) {
     var result;
     switch (name) {
-        case 'gold': case 'gold': case 'titanium': case'tau':
+        case 'gold': case 'gold': case 'titanium': case 'tau':
             result = 'ingredients';
             break;
-        case 'titanium' : case 'tau' : case 'clarity' : case 'lunar' : case 'prophecy' : case 'life' : case 'quantum' : case 'dilithium' : case 'soul' : case 'terra' : case 'tachyon' : case 'shell' :
+        case 'titanium': case 'tau': case 'clarity': case 'lunar': case 'prophecy': case 'life': case 'quantum': case 'dilithium': case 'soul': case 'terra': case 'tachyon': case 'shell':
             result = 'stones';
             break
-        default :
-        result = 'artifacts';
+        default:
+            result = 'artifacts';
     }
     return result;
 }

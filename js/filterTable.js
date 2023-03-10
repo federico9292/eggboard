@@ -9,7 +9,6 @@ var _testEndpoint = 'https://egg-brosssh-git-deployment-brosssh.vercel.app';
 var _prodEndpoint = 'https://egg-brosssh.vercel.app'
 var _devEndpoint = 'https://egg-brosssh-9v86ugob7-brosssh.vercel.app';
 var current_endpoint;
-
 var isTest = false;
 
 $(document).ready(function () {
@@ -609,9 +608,9 @@ function fillPersonalTable(response) {
     jQuery.each(response, function (_key, value) {
         var paddingMetronome = "";
         var style = "cursor:pointer;";
-        if(value[0] == 'metronome') {
+        if (value[0] == 'metronome') {
             style += "padding-left: inherit;padding-right: inherit;";
-        } 
+        }
         jQuery('#myPersonalTable')
             .append('<tr class=\'fs-5\'><td> <img style=\"' + style + '\" src="./assets/' + reverseSuperMapName(value[0]) + '/' + superMapName(value[0]) + '.webp")" height="32px" onclick=getLeaderboard(\'' + reverseSuperMapName(value[0]).charAt(0).toUpperCase() + reverseSuperMapName(value[0]).substring(0, reverseSuperMapName(value[0]).length - 1).substring(1) + '\',\'' + value[0] + '\')>' + value[0].charAt(0).toUpperCase() + value[0].slice(1) + '</td><td>' + value[1]
                 + '</td><td>' + value[2]
@@ -1004,6 +1003,7 @@ function activateBackgroundGrey() {
 function deactivateBackgroundGrey() {
     jQuery('.backgroundBlur')[0].style = '';
 }
+
 function highlightDropdownItem(name) {
     var items = jQuery('.dropdown-item.fs-4');
 

@@ -136,3 +136,9 @@ div.dropdown-row>a.dropdown-item{
 a.dropdown-item.fs-4 {
   text-decoration:none;
 }
+
+input#EID_submit {
+  background-color: unset;
+  width: 90%;
+
+}

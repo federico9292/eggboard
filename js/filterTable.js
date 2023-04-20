@@ -24,6 +24,8 @@ $(document).ready(function () {
     });
     if (localStorage.getItem("EID")) {
         jQuery('#EID')[0].value = localStorage.getItem("EID");
+        jQuery('#EID_submit')[0].value = localStorage.getItem("EID");
+
     }
     else {
         jQuery('#EID')[0].value = '';

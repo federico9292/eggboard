@@ -32,12 +32,12 @@ $(document).ready(function () {
     }
 
 
-    if (localStorage.getItem("EIDSubmit")) {
+    /*if (localStorage.getItem("EIDSubmit")) {
         jQuery('#EIDSubmit')[0].value = localStorage.getItem("EIDSubmit");
     }
     else {
         jQuery('#EIDSubmit')[0].value = '';
-    }
+    }*/
 
     createDropdowns();
 
@@ -640,7 +640,12 @@ function toggleDarkMode() {
 }
 
 function submitEID(e) {
-    var eid = document.getElementById("EIDSubmit").value;
+    try{
+        var eid = document.getElementById("EIDSubmit").value;
+    } catch (exception) {
+
+    }
+    var eid = "";
     const http = new XMLHttpRequest();
     http.open("GET", current_endpoint + "/sendNewEID?EID=" + eid);
     http.send();

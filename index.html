@@ -195,8 +195,7 @@
           value="" onkeyup="saveValue(this)">
         <small id="noShare" class="form-text text-muted">We'll never share your EID with anyone else.</small>
         <p></p>
-        <a href="#" type="submit" class="btn btn-primary fs-3 padding-top-1" onclick="getPersonalLeaderboard(this)">View
-          leaderboards</a>
+        <a href="#" type="submit" class="btn btn-primary fs-3 padding-top-1" onclick="getPersonalLeaderboard(this)">View leaderboards</a>
       </div>
 
     </form>
@@ -215,32 +214,32 @@
 
   <!--  scheda submit EID -->
   <div id="Submit" class="hidden" style="display: flex; flex-direction:column ">
-
-    <label class="fw-normal fs-3 p-3" for="EID_submit">That's your Egg,Inc ID. Insert it in the Replit when asked for</label>
-    <input readonly type="text"  class="form-control fs-3" id="EID_submit" placeholder="That's your EID"
-    value="" width="90%">    
-    <p></p>
-    <br>
-    <iframe src="https://replit.com/@Brosssh/Submit-Ships-Loot?embed=true"
-      frameborder="0"></iframe>
-
+    <div class="form-group fs-3 p-3">
+  
+      <label class="fw-normal" for="EID_submit">That's your Egg,Inc ID. Insert it in the Replit when asked for</label>
+      <input readonly type="text" class="form-control fs-3" id="EID_submit" placeholder="That's your EID" value="" width="90%">
+      <small id="noShare" class="form-text text-muted">We'll never share your EID with anyone else.</small>
+      <p></p>
+      <br>
+      <iframe src="https://replit.com/@Brosssh/Submit-Ships-Loot?embed=true" frameborder="0"></iframe>
+  
       <!--  obsolete -->
       <!--  
-    <form>
-      <div class="form-group fs-3 p-3 hidden">
-        <label class="fw-normal" for="EIDSubmit">Type your Egg,Inc ID to submit your ship log</label>
-        <input type="search" class="form-control fs-3" id="EIDSubmit" placeholder="Enter EID" value=""
-          onkeyup="saveValue(this)">
-        <small id="noShare" class="form-text text-muted">We'll never share your EID with anyone else.</small>
-        <p></p>
-        <a href="#" type="submit" class="btn btn-primary fs-3 padding-top-1" onclick="submitEID(this)">Submit ship
-          logs</a>
-      </div>
-
-    </form>
-    <p></p>
- -->
-
+      <form>
+        <div class="form-group fs-3 p-3 hidden">
+          <label class="fw-normal" for="EIDSubmit">Type your Egg,Inc ID to submit your ship log</label>
+          <input type="search" class="form-control fs-3" id="EIDSubmit" placeholder="Enter EID" value=""
+            onkeyup="saveValue(this)">
+          <small id="noShare" class="form-text text-muted">We'll never share your EID with anyone else.</small>
+          <p></p>
+          <a href="#" type="submit" class="btn btn-primary fs-3 padding-top-1" onclick="submitEID(this)">Submit ship
+            logs</a>
+        </div>
+  
+      </form>
+      <p></p>
+   -->
+    </div>
   </div>
 
 
